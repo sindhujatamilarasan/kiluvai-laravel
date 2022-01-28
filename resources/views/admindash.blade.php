@@ -235,7 +235,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                     </td>
                                
                                       <td>
-                                      PHP developer
+                                      {{$data[('posted_for')]}}
                                       </td>
                                       <td>
                                       Applied
@@ -246,7 +246,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                         
                                         <button type="button" class="btn btn-sm btn-square  text-danger-hover">
                                         <a href="#" class="btn btn-sm btn-success">View</a>
-                                        <a href="{{route('delete',[$data['id'],$data['from']])}}" class="btn btn-sm btn btn-danger delete_user"  >Delete</a>
+                                        <a href="{{route('delete',[$data['id'],$data['from']])}}" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
                                         </button>
                                     </td>
                                 </tr>

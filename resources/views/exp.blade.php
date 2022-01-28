@@ -94,6 +94,7 @@
 </div>
             <div class="form">
                 <div class="note">
+               
                     <h3>Experience</h3>
                 </div>
 
@@ -213,6 +214,9 @@
                      </div>
 
                </div>
+               <div>
+        <input type="hidden" name='hidden' value="{{$id}}"/>
+        </div>
                        
                     <button type="submit" class="btnSubmit">Submit</button>
                     </div>

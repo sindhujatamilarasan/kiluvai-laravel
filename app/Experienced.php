@@ -8,6 +8,6 @@ class Experienced extends Model
 {
     protected $table = 'experienced';
     protected $fillable = [
-        'name', 'Current_Company_Name', 'email','date_from','location','phone','currentctc','expctc','noticeperiod','exp','file'];
+        'name', 'Current_Company_Name', 'email','date_from','location','phone','currentctc','expctc','noticeperiod','exp','file','job_id'];
 }
 

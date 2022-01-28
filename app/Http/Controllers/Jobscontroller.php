@@ -21,7 +21,7 @@ class Jobscontroller extends Controller
     //for fresher form
     public function fresher($id)
     {
-      $date=Carbon::now()->format('Y-m-d');
+     
       return view ('fresher',compact('id'));
      
     }
@@ -33,18 +33,19 @@ class Jobscontroller extends Controller
     }
     
 
-    public function postedjobs()
+    public function postedjobs(Job $job)
     {
-        $date=Carbon::now()->format('Y-m-d');
-        return view ('postedjobs')->with('date',$date);
+       
+        return view ('postedjobs')->with('job',Job::get());
+       
     }
 
 
     //for experienced form
-    public function exp()
+    public function exp($id)
     {
         $date=Carbon::now()->format('Y-m-d');
-        return view ('exp')->with('date',$date);
+        return view ('exp',compact(['id','date']));
     }
 
 
@@ -107,6 +108,7 @@ class Jobscontroller extends Controller
             $Experienced= new Experienced();
             //On left field name in DB and on right field name in Form/view
             $Experienced->name = $request->input('name');
+            $Experienced->job_id = $request->input('hidden');
             $Experienced->email = $request->input('email');
             $Experienced->Current_Company_Name = $request->input('Current_Company_Name');
             $Experienced->date_from = $request->input('date_from');
@@ -148,15 +150,17 @@ class Jobscontroller extends Controller
     {
         //$record=[];
     $Fresher_records= Fresher::get()->toArray();
+   
     foreach($Fresher_records as $record){
     $record["from"]="fresher";
+    $record['posted_for']=Job::find($record["job_id"])->job_title;
     $test1[]=$record;
     }
-  
    
     $Experienced_records=Experienced::get()->toArray();
     foreach($Experienced_records as $record){
         $record["from"]="Experience";
+        $record['posted_for']=Job::find($record["job_id"])->job_title;
         $test2[]=$record;
         }
 

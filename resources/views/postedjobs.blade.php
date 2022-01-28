@@ -68,7 +68,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                     
                 <li class="nav-item">
                         <a class="nav-link" href="{{url('postedjobs')}}">
-                            <i class="bi bi-bookmarks"></i<b>Posted jobs</b>
+                            <i class="bi bi-bookmarks"></i><b>Posted jobs</b>
                         </a>
                     </li>
                     <!--<li class="nav-item">
@@ -136,42 +136,45 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                             <tbody>
                               
                                 
-                            
+                            @foreach($job as $data)
                          
                                 <tr>
                                     <td>
                                     {{$data[('id')]}}    
                                     </td>
                                     <td>
-                                    {{$data[('email')]}} 
+                                    {{$data[('job_title')]}} 
                                     </td>
                                     <td>
-                                    {{$data[('name')]}} 
+                                    {{$data[('job_cat')]}} 
                                     </td>
                                     <td>
-                                    {{$data[('phone')]}} 
+                                    {{strip_tags($data[('job_desc')])}} 
                                     </td>
                                     <td>
-                                    {{$data[('location')]}} 
+                                    {{$data[('created_at')]}} 
                                     </td>
                                
                                       <td>
-                                      PHP developer
+                                    @if($data[('job_stat')]==1)
+                                        Published
+                                    @else
+                                        Unpublished
+                                    @endif
+                                                                        
                                       </td>
-                                      <td>
-                                      Applied
-                                      </td>
+                                      
                                  
                                      
                                     <td class="text-center">
                                         
                                         <button type="button" class="btn btn-sm btn-square  text-danger-hover">
                                         <a href="#" class="btn btn-sm btn-success">View</a>
-                                        <a href="{{route('delete',[$data['id'],$data['from']])}}" class="btn btn-sm btn btn-danger delete_user"  >Delete</a>
+                                        <a href="#" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
                                         </button>
                                     </td>
                                 </tr>
-                              
+                                @endforeach 
                             </tbody>
                         </table>
                     </div>
@@ -181,6 +184,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
         </main>
     </div>
 </div>
+     
 <script>
     $(document).ready(function() {
           $('#dataTable').DataTable();
