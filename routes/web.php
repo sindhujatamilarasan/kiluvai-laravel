@@ -36,9 +36,9 @@ use App\http\controllers\Jobscontroller;
     
     Route::post('exp-form', [Jobscontroller::class,'experience']);
 
-    Route::get('adminlogin',[Jobscontroller::class,'adminlogin']);
+    //Route::get('adminlogin',[Jobscontroller::class,'adminlogin']);
 
-    Route::post('adlogin-form', [Jobscontroller::class,'adlogin']);
+    //Route::post('adlogin-form', [Jobscontroller::class,'adlogin']);
 
     Route::get('admindash',[Jobscontroller::class,'admindash'])->middleware('auth');
    
@@ -50,7 +50,7 @@ use App\http\controllers\Jobscontroller;
 
     Route::get('insert',[Experienced::class,'insertform']);
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    //Route::get('/home', 'HomeController@index')->name('admindash');
 
     Route::group(['middleware' => ['auth']], function() {
          Route::get('logout', 'LogoutController@perform')->name('logout.perform');});

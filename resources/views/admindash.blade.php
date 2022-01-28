@@ -269,7 +269,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   if( confirm('Are you sure?') )
   {
     var id = $(this).attr('id');
-    // Make an ajax call to delete the record and pass the id to identify the record
+
   }
 });
 </script>
