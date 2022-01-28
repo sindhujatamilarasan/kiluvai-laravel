@@ -133,8 +133,7 @@ class Jobscontroller extends Controller
             return redirect('jobpost')->witherrors($validatedData)->withInput();
         }
         else{
-          //return $request;
-          //exit;
+          
             Job::create($request->all());
             return redirect('admindash');
           
