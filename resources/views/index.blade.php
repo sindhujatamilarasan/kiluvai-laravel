@@ -393,14 +393,14 @@ line-height: 1.1;
                                
                                
                               
-                                
-                                <button type="button" class="btn btn-primary"    data-toggle="modal" data-target="#exampleModalCenter">
+                             
+                                <button type="button" class="btn btn-primary"    data-toggle="modal" data-target="#job_type_{{$test->id}}">
                                 Apply Now
                                 </button>
                              
                                 <!-- Modal -->
                                
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="job_type_{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -413,11 +413,12 @@ line-height: 1.1;
                                     </div>
                                   
                                     <div class="modal-body">
-                                    <a href="{{url('fresher')}}">
+                                    
+                                    <a href="job/{{$test->id}}/{{('fresher')}}">
                             
                                     <img class="rounded-circle float-left" style ='width :170px; margin-top:10px; margin-left:40px' src="https://thumbs.dreamstime.com/b/education-icon-eligibility-149246089.jpg" data-holder-rendered="true">
                                     </a>
-                                    <a href="{{url('exp')}}">
+                                    <a href="job/{{$test->id}}/{{('exp')}}">
                                     <img class="rounded-circle float-right" style ='width :210px; margin-bottom:50px;' src="https://thumbs.dreamstime.com/b/experience-icon-experience-147077789.jpg" data-holder-rendered="true">
                                     </a>
                                       <div class="form-check form-check-inline">

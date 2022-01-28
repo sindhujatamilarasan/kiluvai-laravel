@@ -68,7 +68,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                     
                 <li class="nav-item">
                         <a class="nav-link" href="{{url('postedjobs')}}">
-                            <i class="bi bi-bookmarks"></i>Posted jobs
+                            <i class="bi bi-bookmarks"></i<b>Posted jobs</b>
                         </a>
                     </li>
                     <!--<li class="nav-item">
@@ -111,101 +111,22 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                 </div>
             </div>
         </header>
-        <!-- Main -->
-        <main class="py-6 bg-surface-secondary">
-            <div class="container-fluid">
-                <!-- Card stats -->
-                <div class="row g-6 mb-6">
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="card shadow border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of registration</span>
-                                        <span class="h3 font-bold mb-0">10</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                            <i class="bi bi-credit-card"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="card shadow border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of Selected Candidates</span>
-                                        <span class="h3 font-bold mb-0">5</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                                            <i class="bi bi-people"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="card shadow border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of rejected Candidates</span>
-                                        <span class="h3 font-bold mb-0">5</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                                            <i class="bi bi-person-x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="card shadow border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of workers</span>
-                                        <span class="h3 font-bold mb-0">20</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                            <i class="bi bi-person-lines-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
+       
                 <div class="card shadow border-0 mb-9">
                     <div class="card-header">
-                        <h4 class="mb-0">Applications</h4>
+                        <h4 class="mb-0">Posted Jobs</h4>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover" width="100%" id="dataTable">
                             <thead class="thead-light">
                           
                                 <tr>
-                                    <th scope="col">Reg.No</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">Location</th>
-                               
-                                    <th scope="col">Apply position</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Job_id</th>
+                                    <th scope="col">Job title</th>
+                                    <th scope="col">Job category</th>
+                                    <th scope="col">Job Description</th>
+                                    <th scope="col">Job Posted date</th>
+                                    <th scope="col">Job status</th>
                                     <th scope="col">Action</th>
                                   
                                 </tr>
@@ -215,7 +136,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                             <tbody>
                               
                                 
-                            @foreach($total_records as $data)
+                            
                          
                                 <tr>
                                     <td>
@@ -250,7 +171,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                         </button>
                                     </td>
                                 </tr>
-                                @endforeach 
+                              
                             </tbody>
                         </table>
                     </div>

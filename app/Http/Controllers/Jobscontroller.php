@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 Use \Carbon\Carbon;
@@ -18,10 +19,10 @@ class Jobscontroller extends Controller
     }
 
     //for fresher form
-    public function fresher(Job $job)
+    public function fresher($id)
     {
       $date=Carbon::now()->format('Y-m-d');
-      return view ('fresher')->with('job',Job::where('job_stat', 1)->get(['id']));
+      return view ('fresher',compact('id'));
      
     }
 
@@ -32,10 +33,10 @@ class Jobscontroller extends Controller
     }
     
 
-    public function uidevop()
+    public function postedjobs()
     {
         $date=Carbon::now()->format('Y-m-d');
-        return view ('uidevop')->with('date',$date);
+        return view ('postedjobs')->with('date',$date);
     }
 
 
@@ -68,7 +69,9 @@ class Jobscontroller extends Controller
            
             $Fresher= new Fresher();
             //On left field name in DB and on right field name in Form/view
+         
             $Fresher->name = $request->input('name');
+            $Fresher->job_id = $request->input('hidden');
             $Fresher->Graduation = $request->input('Graduation');
             $Fresher->phone = $request->input('phone');
             $Fresher->file = $request->input('file')??'';
@@ -76,7 +79,7 @@ class Jobscontroller extends Controller
             $Fresher->lang = $request->input('lang');
             $Fresher->email = $request->input('email');
             $Fresher->save();
-            return view ('index')->with('job',Job::where('job_stat', 1)->get(['job_title','job_desc','job_cat']));
+            return view ('index')->with('job',Job::where('job_stat', 1)->get());
         }
        
     }
@@ -115,7 +118,7 @@ class Jobscontroller extends Controller
             $Experienced->exp = ($request->input('exp')!= 'on')?$request->input('exp') :$request->input('exp_others') ;
             $Experienced->file = $request->input('file')??'';
             $Experienced->save();
-         
+            
             return redirect('index')->with('job',Job::where('job_stat', 1)->get(['job_title','job_desc','job_cat']));
         }
     }

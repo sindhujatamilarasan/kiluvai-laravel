@@ -22,7 +22,7 @@ use App\http\controllers\Jobscontroller;
 
     Route::get('index',[Jobscontroller::class,'index']);
 
-    Route::get('fresher',[Jobscontroller::class,'fresher']);
+    Route::get('job/{id}/fresher',[Jobscontroller::class,'fresher']);
 
     Route::get('jobpost',[Jobscontroller::class,'jobpost']);
 
@@ -30,13 +30,13 @@ use App\http\controllers\Jobscontroller;
 
     Route::get('uidevop',[Jobscontroller::class,'uidevop']);
 
-    Route::get('exp',[Jobscontroller::class,'exp']);
+    Route::get('job/{id}/exp',[Jobscontroller::class,'exp']);
 
     Route::post('store-form', [Jobscontroller::class,'store']);
     
     Route::post('exp-form', [Jobscontroller::class,'experience']);
 
-    //Route::get('adminlogin',[Jobscontroller::class,'adminlogin']);
+    Route::get('postedjobs',[Jobscontroller::class,'postedjobs']);
 
     //Route::post('adlogin-form', [Jobscontroller::class,'adlogin']);
 

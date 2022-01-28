@@ -95,7 +95,7 @@
 </div>
             <div class="form">
                 <div class="note">
-                   
+         
                     <h3>Fresher</h3>
                 </div>
                
@@ -176,6 +176,9 @@
                             <div class="form-group">
                            
                             </div>
+                            <div>
+                        <input type="hidden" name='hidden' value="{{$id}}"/>
+                        </div>
                             <div class="form-group">
                             
                             <label><h4 class="title"> Upload your resume(accept only pdf) *</h4></label>
