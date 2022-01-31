@@ -10,6 +10,22 @@
 /* URL: https://github.com/webpixels/css */
 
 @import url(https://unpkg.com/@webpixels/css@1.1/dist/index.css);
+#dataTable {
+   
+    flex-flow: row nowrap;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align:center;
+  
+   
+}
+.truncate {
+  max-width:10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
@@ -148,11 +164,11 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                     <td>
                                     {{$data[('job_cat')]}} 
                                     </td>
-                                    <td>
-                                    {{strip_tags($data[('job_desc')])}} 
+                                    <td class="truncate">
+                                   {{strip_tags($data[('job_desc')])}}
                                     </td>
                                     <td>
-                                    {{$data[('created_at')]}} 
+                                    {!! date('d/M/y', strtotime($data->created_at)) !!}
                                     </td>
                                
                                       <td>
@@ -169,8 +185,8 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                     <td class="text-center">
                                         
                                         <button type="button" class="btn btn-sm btn-square  text-danger-hover">
-                                        <a href="#" class="btn btn-sm btn-success">View</a>
-                                        <a href="#" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
+                                        <a href="{{url('edit',[$data['id']])}}" class="btn btn-sm btn-success">Edit</a>
+                                        <a href="{{route('delete',[$data['id']])}}" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -197,4 +213,21 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
   }
 });
+
+
+$('.delete_user').click(function(){
+  if( confirm('Are you sure?') )
+  {
+                    var id = $(this).attr('id');
+  
+                    var msg = '{{Session::get('alert')}}';
+                    var exist = '{{Session::has('alert')}}';
+                    if(exist){
+                    alert(msg);
+                    }
+             
+
+  }
+});
+
 </script>

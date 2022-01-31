@@ -93,6 +93,7 @@
    
   </div>
 </div>
+
             <div class="form">
                 <div class="note">
          
@@ -106,25 +107,28 @@
                             @csrf                                                                                                                                   
                             <div class="form-group">
                            
-                                <label><h4 class="title">Name</h4></label>
-                                <input type="text" name="name" placeholder="Your Full Name *"  class="form-control" class="@error('name') is-invalid @enderror form-control"/>
+                                <label><h4 class="title">Name <span style="color:red">*</span></h4></label>
+                                <input type="text" name="name" placeholder="Your Full Name"  value="{{ Request::old('name') }}" class="form-control" class="@error('name') is-invalid @enderror form-control"/>
                                 @error('name')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
                             <div class="form-group">
-                            <label><h4 class="title">Graduation </h4></label>
-                                <input type="text"  name="Graduation" class="form-control" class="@error('Graduation') is-invalid @enderror form-control" placeholder="Your Graduation details *"/>
+                            <label><h4 class="title">Graduation <span style="color:red">*</span> </h4></label>
+                                <input type="text"  name="Graduation" class="form-control"   value="{{ Request::old('Graduation') }}" class="@error('Graduation') is-invalid @enderror form-control" placeholder="Your Graduation details"/>
                                 @error('Graduation')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
                            
                         </div>
+                        <div>
+                        <input type="hidden" name='hidden' value="{{$id}}"/>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Email</h4></label>
-                                <input type="text" class="form-control" name="email" placeholder="Your Email *"class="@error('email') is-invalid @enderror form-control" >
+                            <label><h4 class="title">Email <span style="color:red">*</span></h4></label>
+                                <input type="text" class="form-control" name="email" value="{{ Request::old('email') }}" placeholder="Your Email"class="@error('email') is-invalid @enderror form-control" >
                                 @error('email')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -132,13 +136,13 @@
                             <div class="form-group">
                             
                             <label><h4 class="title"> Post Graduation</h4></label>
-                                <input type="text" class="form-control" name="pg" placeholder="your Post Graduation details if applicable...." >
+                                <input type="text" class="form-control" name="pg" value="{{ Request::old('pg') }}" placeholder="your Post Graduation details if applicable...." >
                             </div>
                             
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Current Location</h4></label><br>
+                            <label><h4 class="title">Current Location <span style="color:red">*</span></h4></label><br>
                             <input type="radio" id="chennai" value="chennai" name="location" checked="checked">
                             <label for="chennai"> I live in chennai</label>
                             <br>
@@ -150,8 +154,8 @@
                               </div>
                             <div class="form-group">
                             
-                            <label><h4 class="title">Phone Number</h4></label>
-                            <input  type="num" class="form-control" aria-label="Card Holder" class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number *" name="phone" aria-describedby="basic-addon1"  />
+                            <label><h4 class="title">Phone Number <span style="color:red">*</span></h4></label>
+                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}"class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phone" aria-describedby="basic-addon1"  />
                             @error('phone')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -161,12 +165,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Skills </h4></label><br>
-                            <input type="checkbox" name='lang' value="PHP"> PHP <br/>
-                        <input type="checkbox" name='lang' value="JavaScript"> JavaScript <br/>
-                        <input type="checkbox" name='lang' value="jQuery"> jQuery <br/>
-                        <input type="checkbox" name='lang' value="Angular JS"> Angular JS <br/>
-
+                            <label><h4 class="title" class="@error('skill') is-invalid @enderror form-control">Skills <span style="color:red">*</span></h4></label><br>
+                            <input type="checkbox" name='skill[]'  value="PHP" > PHP  <br/>
+                        <input type="checkbox" name='skill[]' value="JavaScript"> JavaScript <br/>
+                        <input type="checkbox" name='skill[]' value="jQuery" > jQuery <br/>
+                        <input type="checkbox"  name='skill[]' value="Angular JS " > Angular JS <br/>
+                        @error('skill')
+                  <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
                             </div>
                             <div class="form-group">
                             </div>
@@ -176,13 +182,11 @@
                             <div class="form-group">
                            
                             </div>
-                            <div>
-                        <input type="hidden" name='hidden' value="{{$id}}"/>
-                        </div>
+                           
                             <div class="form-group">
                             
-                            <label><h4 class="title"> Upload your resume(accept only pdf) *</h4></label>
-                                <input type="file" class="form-control" name="file" class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
+                            <label><h4 class="title"> Upload your resume(accept only pdf) <span style="color:red">*</span></h4></label>
+                                <input type="file" class="form-control" name="file" value="{{ Request::old('file') }}"class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
                                 @error('file')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror

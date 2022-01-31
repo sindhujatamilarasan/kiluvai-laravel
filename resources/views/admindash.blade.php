@@ -57,7 +57,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('admindash')}}">
-                            <i class="bi bi-house"></i> Dashboard
+                            <i class="bi bi-house"></i><b>Dashboard</b>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -122,7 +122,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                 <div class="row">
                                     <div class="col">
                                         <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of registration</span>
-                                        <span class="h3 font-bold mb-0">10</span>
+                                        <span class="h3 font-bold mb-0">{{count($total_records)}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -189,6 +189,9 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                         </div>
                     </div>
                 </div>
+                
+                
+
                 <div class="card shadow border-0 mb-9">
                     <div class="card-header">
                         <h4 class="mb-0">Applications</h4>
@@ -268,7 +271,14 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     $('.delete_user').click(function(){
   if( confirm('Are you sure?') )
   {
-    var id = $(this).attr('id');
+                    var id = $(this).attr('id');
+  
+                    var msg = '{{Session::get('alert')}}';
+                    var exist = '{{Session::has('alert')}}';
+                    if(exist){
+                    alert(msg);
+                    }
+             
 
   }
 });

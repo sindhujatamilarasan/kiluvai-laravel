@@ -20,27 +20,29 @@ use App\http\controllers\Jobscontroller;
              return view('welcome');
         });
 
-    Route::get('index',[Jobscontroller::class,'index']);
+    Route::get('index',[JobsController::class,'index']);
 
-    Route::get('job/{id}/fresher',[Jobscontroller::class,'fresher']);
+    Route::get('job/{id}/fresher',[JobsController::class,'fresher']);
 
-    Route::get('jobpost',[Jobscontroller::class,'jobpost']);
+    Route::get('jobpost',[JobsController::class,'jobpost'])->middleware('auth');
 
-    Route::post('jobpost-form',[Jobscontroller::class,'job']);
+    Route::post('jobpost-form',[JobsController::class,'job']);
 
-    Route::get('uidevop',[Jobscontroller::class,'uidevop']);
+    Route::get('uidevop',[JobsController::class,'uidevop']);
 
-    Route::get('job/{id}/exp',[Jobscontroller::class,'exp']);
+    Route::get('job/{id}/exp',[JobsController::class,'exp']);
 
-    Route::post('store-form', [Jobscontroller::class,'store']);
+    Route::post('store-form', [JobsController::class,'store']);
     
-    Route::post('exp-form', [Jobscontroller::class,'experience']);
+    Route::post('exp-form', [JobsController::class,'experience']);
 
-    Route::get('postedjobs',[Jobscontroller::class,'postedjobs']);
+    Route::get('postedjobs',[JobsController::class,'postedjobs'])->middleware('auth');
 
     //Route::post('adlogin-form', [Jobscontroller::class,'adlogin']);
 
-    Route::get('admindash',[Jobscontroller::class,'admindash'])->middleware('auth');
+    Route::get('admindash',[JobsController::class,'admindash'])->middleware('auth');
+
+    Route::get('edit/{id}',[JobsController::class,'edit'])->middleware('auth');
    
     Auth::routes();
 
@@ -56,6 +58,8 @@ use App\http\controllers\Jobscontroller;
          Route::get('logout', 'LogoutController@perform')->name('logout.perform');});
 
     Route::get('delete/{id}/{from}','JobsController@destroy')->name('delete');
+  
+    Route::get('delete/{id}','JobsController@delete')->name('delete');
 
 
-      Route::get('books.show',[Jobscontroller::class,'show']);
+      Route::get('books.show',[JobsController::class,'show']);

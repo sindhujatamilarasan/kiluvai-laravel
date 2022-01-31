@@ -105,15 +105,15 @@
                             @csrf                                                                                                                                   
                             <div class="form-group">
                       
-                                <label><h4 class="title">Name</h4></label>
-                                <input type="text" class="form-control" name="name" placeholder="Your Full Name *"  class="form-control" class="@error('name') is-invalid @enderror form-control"/>
+                                <label><h4 class="title">Name <span style="color:red">*</span></h4></label>
+                                <input type="text" class="form-control" name="name"  value="{{ Request::old('name') }}"placeholder="Your Full Name"  class="form-control" class="@error('name') is-invalid @enderror form-control"/>
                                 @error('name')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
                             <div class="form-group">
-                            <label><h4 class="title">Current Company Name</h4></label>
-                                <input type="text" class="form-control" name="Current_Company_Name"  class="@error('Current_Company_Name') is-invalid @enderror form-control" placeholder="Your Current Company Name  *" >
+                            <label><h4 class="title">Current Company Name <span style="color:red">*</span></h4></label>
+                                <input type="text" class="form-control" name="Current_Company_Name" value="{{ Request::old('Current_Company_Name') }}" class="@error('Current_Company_Name') is-invalid @enderror form-control" placeholder="Your Current Company Name" >
                                 @error('Current_Company_Name')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -122,16 +122,16 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Email</h4></label>
-                                <input type="text" class="form-control" name="email" placeholder="Your Email *"class="@error('email') is-invalid @enderror form-control" >
+                            <label><h4 class="title">Email <span style="color:red">*</span></h4></label>
+                                <input type="text" class="form-control" name="email" value="{{ Request::old('email') }}" placeholder="Your Email" class="@error('email') is-invalid @enderror form-control" >
                                 @error('email')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
                             <div class="form-group">
                             
-                            <label><h4 class="title">Working in a current company from </h4></label>
-                                <input type="date" class="form-control" name="date_from" id="date_picker" placeholder="your current company details ....*" class="@error('date_from') is-invalid @enderror form-control" >
+                            <label><h4 class="title">Working in a current company from <span style="color:red">*</span> </h4></label>
+                                <input type="date" class="form-control" name="date_from" id="date_picker" value="{{ Request::old('date_from') }}" placeholder="your current company details..." class="@error('date_from') is-invalid @enderror form-control" >
                                 @error('date_from')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -140,7 +140,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Current Location</h4></label><br>
+                            <label><h4 class="title" >Current Location <span style="color:red">*</span></h4></label><br>
                             <input type="radio" id="chennai" value="chennai" name="location" checked="checked">
                             <label for="chennai"> I live in chennai</label>
                             <br>
@@ -149,11 +149,14 @@
                                             <input type="radio" id="chkYes"  name="location">
                             <label for="outside_chennai"> others : </label>
                             <div id="dvtext"><input type="text" name="other_location" value='' /></div>
+                            @error('location')
+                  <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
                          </div>
                             <div class="form-group">
                             
-                            <label><h4 class="title">Phone Number</h4></label>
-                            <input  type="num" class="form-control" aria-label="Card Holder" class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number *" name="phone" aria-describedby="basic-addon1"  />
+                            <label><h4 class="title">Phone Number <span style="color:red">*</span></h4></label>
+                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}" class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phone" aria-describedby="basic-addon1"  />
                             @error('phone')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -163,31 +166,31 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Current CTC </h4>  </label>
+                            <label><h4 class="title">Current CTC <span style="color:red">*</span> </h4>  </label>
                    
-                   <input id="card-holder" type="text" class="form-control" name="currentctc" placeholder="Enter current CTC...*"   class="@error('currentctc') is-invalid @enderror form-control" aria-label="Card Holder" aria-describedby="basic-addon1">
+                   <input id="card-holder" type="text" class="form-control" name="currentctc" value="{{ Request::old('currentctc') }}" placeholder="Enter current CTC..."   class="@error('currentctc') is-invalid @enderror form-control" aria-label="Card Holder" aria-describedby="basic-addon1">
                    @error('currentctc')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
                             <div class="form-group">
-                            <label><h4 class="title">Expected CTC</h4></label><br>
-                            <input id="card-holder" type="text" name="expctc" class="form-control" placeholder="Enter expected CTC..."  aria-label="Card Holder" aria-describedby="basic-addon1">
+                            <label><h4 class="title">Expected CTC <span style="color:red">*</span></h4></label><br>
+                            <input id="card-holder" type="text" name="expctc" class="form-control" value="{{ Request::old('expctc') }}" placeholder="Enter expected CTC..."  aria-label="Card Holder" aria-describedby="basic-addon1">
                            
                     </div>
                             </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Notice Period</h4></label>
-                                <input type="text" class="form-control" name="noticeperiod"  class="@error('Notice Period') is-invalid @enderror form-control" placeholder="Notice period *">
-                                @error('currentctc')
+                            <label><h4 class="title">Notice Period  <span style="color:red">*</span></h4></label>
+                                <input type="text" class="form-control" name="noticeperiod"  value="{{ Request::old('noticeperiod') }}" class="@error('Notice Period') is-invalid @enderror form-control" placeholder="Notice period">
+                                @error('noticeperiod')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                    
                             </div>
                             <div class="form-group">
                             
-                            <label><h4 class="title"> Upload your resume (accept only pdf)*</h4></label>
+                            <label><h4 class="title"> Upload your resume (accept only pdf) <span style="color:red">*</span></h4></label>
                                 <input type="file" class="form-control" name="file" accept="application/pdf class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
                                 @error('file')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -197,7 +200,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                    <label><h4 class="title">Total Experience </h4></label><br>
+                                    <label><h4 class="title">Total Experience  <span style="color:red">*</span></h4></label><br>
                                             <input type="radio" name='exp' value="0-1Yr" checked/>
                                     <label>0-1 year</label></br>
                                             <input type="radio" name='exp' value='1-2Yr'/>
