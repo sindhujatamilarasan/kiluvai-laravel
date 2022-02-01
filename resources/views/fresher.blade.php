@@ -71,21 +71,17 @@
 
               </nav>
 
-
+          
 <div class="container register-form" id="main">
     
 <div class="card" style="width: 69.5rem;">
   
   <div class="card-body">
   <h4 class="card-title">Job Description</h4>
-                         <p> The role is responsible for designing, coding and modifying websites, from layout to function and according to a client’s specifications. Strive to create visually appealing sites that feature user-friendly design and clear navigation.</p>
+                         <p>{{$jobdata[0]->short_desc}}</p>
                         <div id="collapse" style="display:none">
                             <h4 class="title">Web Developer Job Duties:</h4>
-                                <p>Regular exposure to business stakeholders and executive management, as well as the authority and scope to apply your expertise to many interesting technical problems.
-                                    Candidate must have a strong understanding of UI, cross-browser compatibility, general web functions and standards.
-                                    The position requires constant communication with colleagues.
-                                    Experience in planning and delivering software platforms used across multiple products and organizational units.
-                                    Strong grasping knowledge in coding.</p>
+                                <p>{{strip_tags($jobdata[0]->job_desc)}}</p>
                             <h4 class="title">Web Developer Skills and Qualifications:</h4>
                                 <p>JavaScript, JQuery, HTML, HTML5, CSS, CSS3, Web Programming Skills, E-Commerce, Teamwork, Verbal Communication, cross-browser compatibility, Web User Interface Design (UI), Security Principles, Object-Oriented Design, Web Services (REST/SOAP), Multimedia Content Development, API’s</p>
                         </div>
@@ -96,7 +92,7 @@
 
             <div class="form">
                 <div class="note">
-         
+
                     <h3>Fresher</h3>
                 </div>
                
@@ -123,7 +119,7 @@
                            
                         </div>
                         <div>
-                        <input type="hidden" name='hidden' value="{{$id}}"/>
+                        <input type="hidden" name='hidden' value="{{$jobdata[0]->id}}"/>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -166,10 +162,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label><h4 class="title" class="@error('skill') is-invalid @enderror form-control">Skills <span style="color:red">*</span></h4></label><br>
-                            <input type="checkbox" name='skill[]'  value="PHP" > PHP  <br/>
-                        <input type="checkbox" name='skill[]' value="JavaScript"> JavaScript <br/>
-                        <input type="checkbox" name='skill[]' value="jQuery" > jQuery <br/>
-                        <input type="checkbox"  name='skill[]' value="Angular JS " > Angular JS <br/>
+                            <input type="checkbox" name='skill'  value="PHP"{{ old('skill') == 'PHP' ? 'checked' : '' }}> PHP  <br/>
+                        <input type="checkbox" name='skill' value="JavaScript" {{ old('skill') == 'JavaScript' ? 'checked' : '' }} > JavaScript <br/>
+                        <input type="checkbox" name='skill' value="jQuery" {{ old('skill') == 'jQuery ' ? 'checked' : '' }}> jQuery <br/>
+                        <input type="checkbox"  name='skill' value="Angular JS " {{ old('skill') == 'Angular JS' ? 'checked' : '' }}> Angular JS <br/>
                         @error('skill')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror

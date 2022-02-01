@@ -186,7 +186,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                         
                                         <button type="button" class="btn btn-sm btn-square  text-danger-hover">
                                         <a href="{{url('edit',[$data['id']])}}" class="btn btn-sm btn-success">Edit</a>
-                                        <a href="{{route('delete',[$data['id']])}}" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
+                                        <a href="{{route('jobs/delete',[$data['id']])}}" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
                                         </button>
                                     </td>
                                 </tr>

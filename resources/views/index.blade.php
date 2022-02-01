@@ -386,7 +386,7 @@ line-height: 1.1;
                                         <div class="job-content">
                                    <h5 class="text-center text-md-left">
                                      Job description</h5>
-                                          <p>{{strip_tags($test->job_desc)}}</p>
+                                          <p>{{strip_tags($test->short_desc)}}</p>
                                   </div> 
                                 </div>
                                 </div>
