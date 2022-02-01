@@ -66,8 +66,6 @@ class Jobscontroller extends Controller
                     }
                     else
                     {
-                        
-                       
                         $Fresher= new Fresher();
                         $Fresher->name = $request->input('name');
                         $Fresher->job_id = $request->input('hidden');
@@ -75,7 +73,7 @@ class Jobscontroller extends Controller
                         $Fresher->phone = $request->input('phone');
                         $Fresher->file = $request->input('file')??'';
                         $Fresher->location = ($request->input('location') !='on')?$request->input('location'):$request->input('other_location');
-                        $Fresher->lang= $request->input('skill');
+                        $Fresher->lang= serialize($request->input('skill'));
                         $Fresher->email = $request->input('email');
                         $Fresher->save();
                         return view ('index')->with('job',Job::where('job_stat', 1)->get());

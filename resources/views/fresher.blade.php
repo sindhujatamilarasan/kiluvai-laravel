@@ -162,10 +162,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label><h4 class="title" class="@error('skill') is-invalid @enderror form-control">Skills <span style="color:red">*</span></h4></label><br>
-                            <input type="checkbox" name='skill'  value="PHP"{{ old('skill') == 'PHP' ? 'checked' : '' }}> PHP  <br/>
-                        <input type="checkbox" name='skill' value="JavaScript" {{ old('skill') == 'JavaScript' ? 'checked' : '' }} > JavaScript <br/>
-                        <input type="checkbox" name='skill' value="jQuery" {{ old('skill') == 'jQuery ' ? 'checked' : '' }}> jQuery <br/>
-                        <input type="checkbox"  name='skill' value="Angular JS " {{ old('skill') == 'Angular JS' ? 'checked' : '' }}> Angular JS <br/>
+                            <input type="checkbox" name='skill[]'  value="PHP"@if (old('skill')) checked="checked" @endif> PHP  <br/>
+                        <input type="checkbox" name='skill[]' value="JavaScript" @if (old('skill')) checked="checked" @endif> JavaScript <br/>
+                        <input type="checkbox" name='skill[]' value="jQuery" @if (old('skill')) checked="checked" @endif> jQuery <br/>
+                        <input type="checkbox"  name='skill[]' value="Angular JS "@if (old('skill')) checked="checked" @endif> Angular JS <br/>
                         @error('skill')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
