@@ -165,14 +165,12 @@
                @csrf 
                <div class="form-group">
                   <label>
-                     <h4 class="title"  class="@error('Job stat') is-invalid @enderror form-control">Job status <span style="color:red">*</span></h4>
+                     <h4 class="title">Job status <span style="color:red">*</span></h4>
                   </label>
                   <br>
-                  <input type="radio" name='job_stat' value="1"> Published<br/>
+                  <input type="radio" name='job_stat' value="1" checked/> Published<br/>
                   <input type="radio" name='job_stat' value="0"> Unpublished<br/>
-                  @error('job_stat')
-                  <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                  @enderror
+                 
                </div>
                <div class="form-group">
                   <label>

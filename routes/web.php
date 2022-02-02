@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\http\controllers\JobsController;
+use App\http\controllers\InterviewController;
 
 
 /*
@@ -22,25 +22,47 @@ use App\http\controllers\JobsController;
         });
 
     //for careers page
-    Route::get('index',[JobsController::class,'index']);
+   
+
+    Route::group(['middleware' => ['auth']], function() 
+    {
+         Route::get('logout', 'LogoutController@perform')->name('logout.perform');});
+
+    Route::get('delete/{id}/{from}','InterviewController@destroy')->name('delete');
+  
+    Route::get('delete/{id}','InterviewController@delete')->name('jobs/delete');
+
+    Route::post('update/{id}',[InterviewController::class,'update']);
+
+
+
+
+    /* sdfdf */
+
+
     
-    Route::get('job/{id}/fresher',[JobsController::class,'fresher']);
+    Route::get('index','InterviewController@index');
 
-    Route::get('job/{id}/exp',[JobsController::class,'exp']);
+    Route::get('job/{id}/fresher','InterviewController@fresher');
 
-    Route::post('store-form', [JobsController::class,'store']);
+    Route::get('job/{id}/exp','InterviewController@exp');
+ 
+    Route::post('store-form','InterviewController@store'); 
 
-    Route::post('exp-form', [JobsController::class,'experience']);
-       
-    Route::get('admindash',[JobsController::class,'admindash'])->middleware('auth');
+    Route::post('exp-form','InterviewController@experience'); 
 
-    Route::get('jobpost',[JobsController::class,'jobpost'])->middleware('auth');
+        
+    Route::get('admindash','InterviewController@admindash')->middleware('auth');
 
-    Route::post('jobpost-form',[JobsController::class,'job']);
 
-    Route::get('postedjobs',[JobsController::class,'postedjobs'])->middleware('auth');
-
-    Route::get('edit/{id}',[JobsController::class,'edit'])->middleware('auth');
+    Route::get('jobpost','InterviewController@jobpost')->middleware('auth');
+ 
+    Route::post('jobpost-form','InterviewController@job');
+ 
+    Route::get('postedjobs','InterviewController@postedjobs')->middleware('auth');
+ 
+    Route::get('edit/{id}','InterviewController@edit')->middleware('auth');
+ 
    
     Auth::routes();
 
@@ -50,12 +72,6 @@ use App\http\controllers\JobsController;
 
     Route::get('insert',[Experienced::class,'insertform']);
 
-    Route::group(['middleware' => ['auth']], function() 
-    {
-         Route::get('logout', 'LogoutController@perform')->name('logout.perform');});
 
-    Route::get('delete/{id}/{from}','JobsController@destroy')->name('delete');
-  
-    Route::get('delete/{id}','JobsController@delete')->name('jobs/delete');
 
-    Route::post('update/{id}',[JobsController::class,'update']);
+    /* sad */
