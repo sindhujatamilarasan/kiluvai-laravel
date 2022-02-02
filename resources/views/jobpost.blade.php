@@ -153,6 +153,7 @@
       </div>
    </div>
 </header>
+
 <div class="container register-form" id="main">
 <div class="form">
    <div class="note">
@@ -168,8 +169,8 @@
                      <h4 class="title">Job status <span style="color:red">*</span></h4>
                   </label>
                   <br>
-                  <input type="radio" name='job_stat' value="1" checked/> Published<br/>
-                  <input type="radio" name='job_stat' value="0"> Unpublished<br/>
+                  <input type="radio" name='job_stat' value="1" /> Published<br/>
+                  <input type="radio" name='job_stat' value="0" checked/> Unpublished<br/>
                  
                </div>
                <div class="form-group">
@@ -214,10 +215,11 @@
                </div>
          </div>
       </div>
-      <button type="submit" class="btnSubmit">Submit</button>
+      <button type="submit" class="btnSubmit" onclick="return confirm('Successfully Posted  !!!')">Submit</button>
       </form>
    </div>
 </div>
+
 <script>
    $('#summernote').summernote({
        height:250,

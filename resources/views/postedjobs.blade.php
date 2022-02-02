@@ -1,9 +1,7 @@
 <head>
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 <style>
 /* Webpixels CSS */
 /* Utility and component-centric Design System based on Bootstrap for fast, responsive UI development */
@@ -122,16 +120,17 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                     <div class="row align-items-center">
                         <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                             <!-- Title -->
-                            <h1 class="h2 mb-0 ls-tight">Admin</h1>
+                             <h1 class="h2 mb-0 ls-tight">Admin</h1>
                         </div>
                 </div>
             </div>
         </header>
-       
-                <div class="card shadow border-0 mb-9">
+        <br>
+                <div class="card shadow border-0 mb-3">
                     <div class="card-header">
                         <h4 class="mb-0">Posted Jobs</h4>
                     </div>
+                </div>
                     <div class="table-responsive">
                         <table class="table table-hover" width="100%" id="dataTable">
                             <thead class="thead-light">
@@ -186,7 +185,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                         
                                         <button type="button" class="btn btn-sm btn-square  text-danger-hover">
                                         <a href="{{url('edit',[$data['id']])}}" class="btn btn-sm btn-success">Edit</a>
-                                        <a href="{{route('jobs/delete',[$data['id']])}}" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
+                                        <a href="{{route('jobs/delete',[$data['id']])}}"  onclick="return confirm('Are you sure you want to perform this action ?')" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -199,7 +198,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
             </div>
         </main>
     </div>
-</div>
+
      
 <script>
     $(document).ready(function() {
@@ -214,20 +213,6 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   }
 });
 
-
-$('.delete_user').click(function(){
-  if( confirm('Are you sure?') )
-  {
-                    var id = $(this).attr('id');
-  
-                    var msg = '{{Session::get('alert')}}';
-                    var exist = '{{Session::has('alert')}}';
-                    if(exist){
-                    alert(msg);
-                    }
-             
-
-  }
 });
 
 </script>

@@ -21,7 +21,7 @@
 </head>
 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
 <!-- Vertical Navbar -->
-<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
+<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg  py-2 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
    <div class="container-fluid">
       <!-- Toggler -->
       <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,13 +39,7 @@
             <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             </a>
             <!-- Menu -->
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
-               <a href="#" class="dropdown-item">Profile</a>
-               <a href="#" class="dropdown-item">Settings</a>
-               <a href="#" class="dropdown-item">Billing</a>
-               <hr class="dropdown-divider">
-               <a href="#" class="dropdown-item">Logout</a>
-            </div>
+           
          </div>
       </div>
       <!-- Collapse -->
@@ -93,7 +87,7 @@
    </div>
 </nav>
 <!-- Main content -->
-<div class="h-screen flex-grow-1 overflow-y-lg-auto">
+<div class="h-screen flex-grow-1 overflow-y-lg-right">
    <!-- Header -->
    <header class="bg-surface-primary border-bottom pt-6">
       <div class="container-fluid">
@@ -106,7 +100,7 @@
             </div>
          </div>
    </header>
-
+  <br>
    <!-- Card stats -->
    <div class="row g-6 mb-6">
     <div class="col-xl-3 col-sm-6 col-12">
@@ -178,12 +172,12 @@
          </div>
     </div>
    </div>
-   <div class="card shadow border-0 mb-9">
+   <div class="card shadow border-0 mb-3">
         <div class="card-header">
-            <h4 class="mb-0">Applications</h4>
-   </div>
-   <div class="table-responsive">
-                <table class="table table-hover" width="100%" id="dataTable">
+            <h4 class="mb-0">Applications</h4></div>
+            </div><br> 
+   
+      <table id="example" class="table table-striped"  style="width:100%">
                     <thead class="thead-light">
                         <tr>
                                     <th scope="col">Reg.No</th>
@@ -223,7 +217,7 @@
                             <td class="text-center">
                             <button type="button" class="btn btn-sm btn-square  text-danger-hover">
                             <a href="#" class="btn btn-sm btn-success">View</a>
-                            <a href="{{route('delete',[$data['id'],$data['from']])}}" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
+                            <a href="{{route('delete',[$data['id'],$data['from']])}}" onclick="return confirm('Are you sure you want to perform this action ?')" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
                             </button>
                             </td>
                       </tr>
@@ -234,25 +228,14 @@
          </div>
       </div>
    </main>
- </div>
-</div>
+
+
 <script>
-   $(document).ready(function() {
-         $('#dataTable').DataTable();
-   });
-   
-   $('.delete_user').click(function(){
-   if( confirm('Are you sure?') )
-   {
-                   var id = $(this).attr('id');
-   
-                   var msg = '{{Session::get('alert')}}';
-                   var exist = '{{Session::has('alert')}}';
-                   if(exist){
-                   alert(msg);
-                   }
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script> 
+                   
             
    
-   }
-   });
-</script>
+

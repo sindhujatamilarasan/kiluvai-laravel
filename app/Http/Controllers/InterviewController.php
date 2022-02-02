@@ -14,14 +14,15 @@ class InterviewController extends Controller
                //for index view page
                public function index(Job $job)
                 {
-                   return view ('index')->with('job',Job::where('job_stat', 1)->get(['id','job_title','job_desc','job_cat','short_desc']));
+                    $job = Job::where('job_stat', 1)->orderBy('id', 'DESC')->get();
+                   return view ('index')->with('job',$job);
                 }
 
                //for fresher viw page
                 public function fresher($id)
                 {
                     $jobdata=Job::where('id', $id)->get(['id','job_desc','short_desc']);
-                    return view ('fresher',compact('jobdata'));
+                    return view ('fresher')->with('jobdata',$jobdata);
                 
                 }
 
@@ -33,8 +34,10 @@ class InterviewController extends Controller
 
                  //for admin postedjobs view form
                 public function postedjobs(Job $job)
+
                 {
-                    return view ('postedjobs')->with('job',Job::get());
+                    $job = Job::orderBy('id', 'DESC')->get();
+                    return view ('postedjobs')->with('job',$job);
                 
                 }
 
@@ -90,7 +93,7 @@ class InterviewController extends Controller
                     'Current_Company_Name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/',
                     'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                     'file' => 'required|mimes:pdf|max:2500',
-                    'email' => 'required|email|unique:users,email_address|max:40|regex:/@/(.+).com(.+)i',
+                    'email' => 'required|email|unique:users|max:40|regex:/(.+)@(.+)\.(.+)/i',
                     'date_from' => 'required',
                     'currentctc' => 'required',
                     'noticeperiod' => 'required'
@@ -141,7 +144,7 @@ class InterviewController extends Controller
                     {
                     
                         Job::create($request->all());
-                        return redirect('admindash');
+                        return redirect('admindash')->with('message', 'Successfully Posted');
                      }
                 }
 
@@ -150,7 +153,7 @@ class InterviewController extends Controller
                 {
                     $test1=[];  
                     $test2=[];  
-                    $Fresher_records= Fresher::get()->toArray();
+                    $Fresher_records= Fresher::orderBy('created_at','DESC')->get()->toArray();
 
                     if(!empty($Fresher_records))
                     {
@@ -163,7 +166,7 @@ class InterviewController extends Controller
                 
                     }
 
-                   $Experienced_records=Experienced::get()->toArray();
+                   $Experienced_records=Experienced::orderBy('created_at','DESC')->get()->toArray();
 
                     if(!empty( $Experienced_records))
                      {
@@ -174,7 +177,8 @@ class InterviewController extends Controller
                                 $test2[]=$record;
                          }
                     }
-                    $total_records=array_merge( $test1, $test2); 
+                    $total_records=collect(array_merge( $test1, $test2));
+                    
                     return view ('admindash')->with('total_records',$total_records);
 
                 }
@@ -193,13 +197,13 @@ class InterviewController extends Controller
                     if($from =='fresher')
                     {
                         DB::delete('delete from fresher  where id = ?',[$id]);
-                        return redirect()->back() ->with('alert', 'Deleted successfully!');
+                        return redirect()->back();
                     }
                     else
                     {
                         DB::delete('delete from experienced  where id = ?',[$id]);
                         echo "Record deleted successfully.<br/>";
-                        return redirect()->back() ->with('alert', 'Deleted successfully!');
+                        return redirect()->back();
                     }
                     
                 }
@@ -216,7 +220,7 @@ class InterviewController extends Controller
                         $experienceDelete=DB::delete('delete from experienced  where job_id = ?',[$id]);  
                     }
                    
-                    return redirect()->back() ->with('alert', 'Deleted successfully!');
+                    return redirect()->back();
                 
                     
                  }

@@ -104,14 +104,14 @@
                             <div class="form-group">
                            
                                 <label><h4 class="title">Name <span style="color:red">*</span></h4></label>
-                                <input type="text" name="name" placeholder="Your Full Name"  value="{{ Request::old('name') }}" class="form-control" class="@error('name') is-invalid @enderror form-control"/>
+                                <input type="text" name="name" placeholder="Your Full Name"  value="{{ Request::old('name') }}" class="form-control" class="@error('name') is-invalid @enderror form-control" required/>
                                 @error('name')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
                             <div class="form-group">
                             <label><h4 class="title">Graduation <span style="color:red">*</span> </h4></label>
-                                <input type="text"  name="Graduation" class="form-control"   value="{{ Request::old('Graduation') }}" class="@error('Graduation') is-invalid @enderror form-control" placeholder="Your Graduation details"/>
+                                <input type="text"  name="Graduation" class="form-control"   value="{{ Request::old('Graduation') }}" class="@error('Graduation') is-invalid @enderror form-control" placeholder="Your Graduation details" required/>
                                 @error('Graduation')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -124,7 +124,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label><h4 class="title">Email <span style="color:red">*</span></h4></label>
-                                <input type="text" class="form-control" name="email" value="{{ Request::old('email') }}" placeholder="Your Email"class="@error('email') is-invalid @enderror form-control" >
+                                <input type="text" class="form-control" name="email" value="{{ Request::old('email') }}" placeholder="Your Email"class="@error('email') is-invalid @enderror form-control" required>
                                 @error('email')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -132,7 +132,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title"> Post Graduation</h4></label>
-                                <input type="text" class="form-control" name="pg" value="{{ Request::old('pg') }}" placeholder="your Post Graduation details if applicable...." >
+                                <input type="text" class="form-control" name="pg" value="{{ Request::old('pg') }}" placeholder="your Post Graduation details if applicable...."  >
                             </div>
                             
                         </div>
@@ -151,7 +151,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title">Phone Number <span style="color:red">*</span></h4></label>
-                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}"class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phone" aria-describedby="basic-addon1"  />
+                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}"class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phone" aria-describedby="basic-addon1" required />
                             @error('phone')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -182,7 +182,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title"> Upload your resume(accept only pdf) <span style="color:red">*</span></h4></label>
-                                <input type="file" class="form-control" name="file" value="{{ Request::old('file') }}"class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
+                                <input type="file" class="form-control" name="file" value="{{ Request::old('file') }}"class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel" required>
                                 @error('file')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
