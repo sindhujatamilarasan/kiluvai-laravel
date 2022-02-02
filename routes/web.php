@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\http\controllers\Jobscontroller;
+use App\http\controllers\JobsController;
 
 
 /*

@@ -9,7 +9,7 @@ use App\Fresher;
 use App\Experienced;
 use DB;
 
-class Jobscontroller extends Controller
+class JobsController extends Controller
             {
                //for index view page
                public function index(Job $job)
