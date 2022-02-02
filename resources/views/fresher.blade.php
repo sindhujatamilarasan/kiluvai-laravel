@@ -104,14 +104,14 @@
                             <div class="form-group">
                            
                                 <label><h4 class="title">Name <span style="color:red">*</span></h4></label>
-                                <input type="text" name="name" placeholder="Your Full Name"  value="{{ Request::old('name') }}" class="form-control" class="@error('name') is-invalid @enderror form-control" required/>
+                                <input type="text" name="name" placeholder="Your Full Name"  value="{{ Request::old('name') }}" class="form-control" class="@error('name') is-invalid @enderror form-control"/>
                                 @error('name')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
                             <div class="form-group">
                             <label><h4 class="title">Graduation <span style="color:red">*</span> </h4></label>
-                                <input type="text"  name="Graduation" class="form-control"   value="{{ Request::old('Graduation') }}" class="@error('Graduation') is-invalid @enderror form-control" placeholder="Your Graduation details" required/>
+                                <input type="text"  name="Graduation" class="form-control"   value="{{ Request::old('Graduation') }}" class="@error('Graduation') is-invalid @enderror form-control" placeholder="Your Graduation details" />
                                 @error('Graduation')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -124,7 +124,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label><h4 class="title">Email <span style="color:red">*</span></h4></label>
-                                <input type="text" class="form-control" name="email" value="{{ Request::old('email') }}" placeholder="Your Email"class="@error('email') is-invalid @enderror form-control" required>
+                                <input type="text" class="form-control" name="email" value="{{ Request::old('email') }}" placeholder="Your Email"class="@error('email') is-invalid @enderror form-control" >
                                 @error('email')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -151,7 +151,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title">Phone Number <span style="color:red">*</span></h4></label>
-                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}"class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phone" aria-describedby="basic-addon1" required />
+                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}"class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phone" aria-describedby="basic-addon1" />
                             @error('phone')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -162,10 +162,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label><h4 class="title" class="@error('skill') is-invalid @enderror form-control">Skills <span style="color:red">*</span></h4></label><br>
-                            <input type="checkbox" name='skill[]'  value="PHP"@if (old('skill')) checked="checked" @endif> PHP  <br/>
-                        <input type="checkbox" name='skill[]' value="JavaScript" @if (old('skill')) checked="checked" @endif> JavaScript <br/>
-                        <input type="checkbox" name='skill[]' value="jQuery" @if (old('skill')) checked="checked" @endif> jQuery <br/>
-                        <input type="checkbox"  name='skill[]' value="Angular JS "@if (old('skill')) checked="checked" @endif> Angular JS <br/>
+                            <input type="checkbox" name='skill[]'  value="PHP"  {{ (is_array(old('skill')) and in_array('PHP', old('skill'))) ? ' checked' : '' }}> PHP  <br/>
+                        <input type="checkbox" name='skill[]' value="JavaScript"  {{ (is_array(old('skill')) and in_array('JavaScript', old('skill'))) ? ' checked' : '' }}> JavaScript <br/>
+                        <input type="checkbox" name='skill[]' value="jQuery" {{ (is_array(old('skill')) and in_array('jQuery', old('skill'))) ? ' checked' : '' }}> jQuery <br/>
+                        <input type="checkbox"  name='skill[]' value="Angular JS " {{ (is_array(old('skill')) and in_array('Angular JS', old('skill'))) ? ' checked' : '' }}> Angular JS <br/>
                         @error('skill')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -182,7 +182,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title"> Upload your resume(accept only pdf) <span style="color:red">*</span></h4></label>
-                                <input type="file" class="form-control" name="file" value="{{ Request::old('file') }}"class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel" required>
+                                <input type="file" class="form-control" name="file" value="{{ Request::old('file') }}"class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel" >
                                 @error('file')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror

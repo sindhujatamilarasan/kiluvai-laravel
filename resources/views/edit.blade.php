@@ -194,7 +194,7 @@
                </div>
          </div>
       </div>
-      <button type="submit" class="btnSubmit"  onclick="return confirm('Successfully Updated !!!')">Update</button>
+      <button type="submit" class="btnSubmit" >Update</button>
       </form>
    </div>
 </div>

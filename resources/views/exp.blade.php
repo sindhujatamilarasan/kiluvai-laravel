@@ -156,8 +156,8 @@
                             <div class="form-group">
                             
                             <label><h4 class="title">Phone Number <span style="color:red">*</span></h4></label>
-                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}" class="@error('phone') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phone" aria-describedby="basic-addon1"  />
-                            @error('phone')
+                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}" class="@error('phonenumber') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phonenumber" aria-describedby="basic-addon1"  />
+                            @error('phonenumber')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                    
@@ -175,8 +175,10 @@
                             </div>
                             <div class="form-group">
                             <label><h4 class="title">Expected CTC <span style="color:red">*</span></h4></label><br>
-                            <input id="card-holder" type="text" name="expctc" class="form-control" value="{{ Request::old('expctc') }}" placeholder="Enter expected CTC..."  aria-label="Card Holder" aria-describedby="basic-addon1">
-                           
+                            <input id="card-holder" type="text" name="expectedctc" class="form-control" value="{{ Request::old('expctc') }}" placeholder="Enter expected CTC..." class="@error('expected ctc') is-invalid @enderror form-control" aria-label="Card Holder" aria-describedby="basic-addon1">
+                            @error('expectedctc')
+                  <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror   
                     </div>
                             </div>
                         <div class="col-md-6">

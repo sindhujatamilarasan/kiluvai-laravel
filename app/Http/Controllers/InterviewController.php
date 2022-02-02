@@ -90,13 +90,14 @@ class InterviewController extends Controller
 
                     $validatedData = Validator::make($request->all(),
                     ['name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/',
-                    'Current_Company_Name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/',
-                    'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+                    'Current_Company_Name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
+                    'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                     'file' => 'required|mimes:pdf|max:2500',
                     'email' => 'required|email|unique:users|max:40|regex:/(.+)@(.+)\.(.+)/i',
                     'date_from' => 'required',
-                    'currentctc' => 'required',
-                    'noticeperiod' => 'required'
+                    'currentctc' => 'required|numeric',
+                    'expectedctc' => 'required|numeric',
+                    'noticeperiod' => 'required|alpha_num'
                     ]);
                     if ($validatedData->fails())
                     {
@@ -112,9 +113,9 @@ class InterviewController extends Controller
                         $Experienced->Current_Company_Name = $request->input('Current_Company_Name');
                         $Experienced->date_from = $request->input('date_from');
                         $Experienced->location = ($request->input('location') !='on')?$request->input('location'):$request->input('other_location');
-                        $Experienced->phone = $request->input('phone');
+                        $Experienced->phone = $request->input('phonenumber');
                         $Experienced->currentctc = $request->input('currentctc');
-                        $Experienced->expctc = $request->input('expctc');
+                        $Experienced->expctc = $request->input('expectedctc');
                         $Experienced->noticeperiod = $request->input('noticeperiod');
                         $Experienced->exp = ($request->input('exp')!= 'on')?$request->input('exp') :$request->input('exp_others') ;
                         $Experienced->file = $request->input('file')??'';
@@ -130,10 +131,10 @@ class InterviewController extends Controller
                 
                     $validatedData = Validator::make($request->all(),
                     ['job_title' => 'required',
-                    'job_cat' => 'required',
-                    'job_stat' => 'required',
-                    'short_desc' => 'required',
-                    'job_desc' => 'required',
+                    'job_catagory' => 'required',
+                    'job_status' => 'required',
+                    'short_description' => 'required',
+                    'job_description' => 'required',
                      ]);
                 
                     if ($validatedData->fails())
@@ -142,9 +143,16 @@ class InterviewController extends Controller
                     }
                     else
                     {
-                    
-                        Job::create($request->all());
-                        return redirect('admindash')->with('message', 'Successfully Posted');
+                        $job= new Job();
+                        $job->job_title= $request->input('job_title');
+                        $job->job_desc = $request->input('job_description');
+                        $job->job_cat = $request->input('job_catagory');
+                        $job->job_stat = $request->input('job_status');
+                        $job->short_desc= $request->input('short_description')??'';
+                       
+                        $job->save();  
+                       
+                        return redirect()->back()->with('message', 'Successfully Posted !!!');
                      }
                 }
 

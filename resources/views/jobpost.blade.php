@@ -153,7 +153,11 @@
       </div>
    </div>
 </header>
-
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
 <div class="container register-form" id="main">
 <div class="form">
    <div class="note">
@@ -169,8 +173,8 @@
                      <h4 class="title">Job status <span style="color:red">*</span></h4>
                   </label>
                   <br>
-                  <input type="radio" name='job_stat' value="1" /> Published<br/>
-                  <input type="radio" name='job_stat' value="0" checked/> Unpublished<br/>
+                  <input type="radio" name='job_status' value="1" /> Published<br/>
+                  <input type="radio" name='job_status' value="0" checked/> Unpublished<br/>
                  
                </div>
                <div class="form-group">
@@ -187,35 +191,35 @@
                      <h4 class="title"  class="@error('job_catogory') is-invalid @enderror form-control">Job category <span style="color:red">*</span></h4>
                   </label>
                   <br>
-                  <input type="radio" name='job_cat' value="fresher"> Fresher<br/>
-                  <input type="radio" name='job_cat' value=" Experienced"> Experienced <br/>
-                  <input type="radio" name='job_cat' value="Both"> Both<br/>
-                  @error('job_cat')
+                  <input type="radio" name='job_catagory' value="fresher"> Fresher<br/>
+                  <input type="radio" name='job_catagory' value=" Experienced"> Experienced <br/>
+                  <input type="radio" name='job_catagory' value="Both"> Both<br/>
+                  @error('job_catagory')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                   @enderror
                </div>
                <div class="form-group">
                   <label>
-                     <h4 class="title"  class="@error('short_desc') is-invalid @enderror form-control">Short Description <span style="color:red">*</span></h4>
+                     <h4 class="title"  class="@error('short_description') is-invalid @enderror form-control">Short Description <span style="color:red">*</span></h4>
                   </label>
                   <br>
-                  <textarea class="textarea"  cols="90" rows="4"  name="short_desc"></textarea>
-                  @error('short_desc')
+                  <textarea class="textarea"  cols="90" rows="4"  name="short_description"></textarea>
+                  @error('short_description')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                   @enderror
                </div>
                <div class="form-group">
                   <label>
-                     <h4 class="title"  class="@error('job_desc') is-invalid @enderror form-control">Job Description <span style="color:red">*</span></h4>
+                     <h4 class="title"  class="@error('job_description') is-invalid @enderror form-control">Job Description <span style="color:red">*</span></h4>
                   </label>
-                  <textarea id="summernote" name="job_desc"></textarea>
-                  @error('job_desc')
+                  <textarea id="summernote" name="job_description"></textarea>
+                  @error('job_description')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                   @enderror
                </div>
          </div>
       </div>
-      <button type="submit" class="btnSubmit" onclick="return confirm('Successfully Posted  !!!')">Submit</button>
+      <button type="submit" class="btnSubmit">Submit</button>
       </form>
    </div>
 </div>
