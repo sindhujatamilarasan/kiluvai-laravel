@@ -193,7 +193,7 @@
                   <br>
                   <input type="radio" name='job_catagory' value="fresher"> Fresher<br/>
                   <input type="radio" name='job_catagory' value=" Experienced"> Experienced <br/>
-                  <input type="radio" name='job_catagory' value="Both"> Both<br/>
+                  <input type="radio" name='job_catagory' value="Both"> Fresher / Experienced<br/>
                   @error('job_catagory')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                   @enderror

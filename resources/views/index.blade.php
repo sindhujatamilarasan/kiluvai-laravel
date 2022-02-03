@@ -370,7 +370,7 @@ line-height: 1.1;
                                         <h4 class="text-center text-md-left"><b><u>{{$test->job_title}}</b></u></h4><br>
                                         <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
                                             <li class="mr-md-4">
-                                                <i class="zmdi zmdi-pin mr-2"></i><b> {{$test->job_cat}} </b><br>
+                                                <i class="zmdi zmdi-pin mr-2"></i><b>{{$test->job_cat=='Both' ? 'Fresher/Experienced':$test->job_cat}}</b><br>
                                             
                                             </li>
                                             <li class="mr-md-4">
@@ -381,8 +381,6 @@ line-height: 1.1;
                                             </li>
                                         </ul>
                                    
-                                     
-                              
                                         <div class="job-content">
                                    <h5 class="text-center text-md-left">
                                      Job description</h5>
@@ -390,17 +388,29 @@ line-height: 1.1;
                                   </div> 
                                 </div>
                                 </div>
-                               
-                               
-                              
-                             
-                                <button type="button" class="btn btn-primary"    data-toggle="modal" data-target="#job_type_{{$test->id}}">
+                                
+                                @if($test->job_cat=='fresher')
+
+                                <a href="job/{{$test->id}}/{{('fresher')}}">
+                                <button type="button" class="btn btn-primary"> Apply Now</button>
+
+                                @elseif($test->job_cat=='Experienced')
+
+                                <a href="job/{{$test->id}}/{{('exp')}}">
+                                <button type="button" class="btn btn-primary"> Apply Now</button>
+
+                                @else($test->job_cat=='Both')
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#job_type_{{$test->id}}">
                                 Apply Now
                                 </button>
-                             
+
+                                @endif   
+        
+                               
                                 <!-- Modal -->
                                
-                                <div class="modal fade" id="job_type_{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                               <div class="modal fade" id="job_type_{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -435,17 +445,16 @@ line-height: 1.1;
                                  
                                     </div>
                                     </div>
-                           
-                                    
-                                 
-                               
                                     </div>
+                                
+                                   </div>
                                 </div>
-                                </div>
-                            
-                          @endforeach 
-                       
-                     
-                    </div>
+                                @endforeach 
+                          </div>
                     </form>
                    
+                     
+                    
+                                   
+                              
+                         
