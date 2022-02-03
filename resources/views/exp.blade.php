@@ -166,7 +166,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Current CTC <span style="color:red">*</span> </h4>  </label>
+                            <label><h4 class="title">Current CTC (per Month) <span style="color:red">*</span> </h4>  </label>
                    
                    <input id="card-holder" type="text" class="form-control" name="currentctc" value="{{ Request::old('currentctc') }}" placeholder="Enter current CTC..."   class="@error('currentctc') is-invalid @enderror form-control" aria-label="Card Holder" aria-describedby="basic-addon1">
                    @error('currentctc')
@@ -174,7 +174,7 @@
                 @enderror
                             </div>
                             <div class="form-group">
-                            <label><h4 class="title">Expected CTC <span style="color:red">*</span></h4></label><br>
+                            <label><h4 class="title">Expected CTC (per Month) <span style="color:red">*</span></h4></label><br>
                             <input id="card-holder" type="text" name="expectedctc" class="form-control" value="{{ Request::old('expctc') }}" placeholder="Enter expected CTC..." class="@error('expected ctc') is-invalid @enderror form-control" aria-label="Card Holder" aria-describedby="basic-addon1">
                             @error('expectedctc')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -183,7 +183,7 @@
                             </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label><h4 class="title">Notice Period  <span style="color:red">*</span></h4></label>
+                            <label><h4 class="title">Notice Period ( in days)<span style="color:red">*</span></h4></label>
                                 <input type="text" class="form-control" name="noticeperiod"  value="{{ Request::old('noticeperiod') }}" class="@error('Notice Period') is-invalid @enderror form-control" placeholder="Notice period">
                                 @error('noticeperiod')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -193,7 +193,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title"> Upload your resume (accept only pdf) <span style="color:red">*</span></h4></label>
-                                <input type="file" class="form-control" name="file" accept="application/pdf class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
+                                <input type="file" class="form-control" name="file"   value="{{ Request::old('file') }}" accept="application/pdf class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
                                 @error('file')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -213,7 +213,7 @@
                                     <label> 3+ years</label></br>
 
                                             <input type="radio" id="chkYes"  name='exp'/>
-                                    <label>others :  </label> 
+                                    <label>others(years) :  </label> 
                                      <div id="dvtext"><input type="text" id="txtBox"  name='exp_others' value=''  /></div><br>
                         </div>       
                      </div>

@@ -92,7 +92,8 @@
 
             <div class="form">
                 <div class="note">
-
+                 
+                
                     <h3>Fresher</h3>
                 </div>
                
@@ -162,14 +163,18 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label><h4 class="title" class="@error('skill') is-invalid @enderror form-control">Skills <span style="color:red">*</span></h4></label><br>
-                            <input type="checkbox" name='skill[]'  value="PHP"  {{ (is_array(old('skill')) and in_array('PHP', old('skill'))) ? ' checked' : '' }}> PHP  <br/>
-                        <input type="checkbox" name='skill[]' value="JavaScript"  {{ (is_array(old('skill')) and in_array('JavaScript', old('skill'))) ? ' checked' : '' }}> JavaScript <br/>
-                        <input type="checkbox" name='skill[]' value="jQuery" {{ (is_array(old('skill')) and in_array('jQuery', old('skill'))) ? ' checked' : '' }}> jQuery <br/>
-                        <input type="checkbox"  name='skill[]' value="Angular JS " {{ (is_array(old('skill')) and in_array('Angular JS', old('skill'))) ? ' checked' : '' }}> Angular JS <br/>
-                        @error('skill')
+                            @foreach($skills as $skill_set)
+
+                            <input type="checkbox" name='skill[]'  value="{{$skill_set}}" {{ (is_array(old('skill')) and in_array($skill_set, old('skill'))) ? ' checked' : '' }}/> {{$skill_set}}<br/>
+                          
+                       
+                @endforeach
+                
+                @error('skill')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                             </div>
+                        
                             <div class="form-group">
                             </div>
                             

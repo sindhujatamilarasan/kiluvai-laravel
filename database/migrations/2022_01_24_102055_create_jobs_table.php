@@ -19,6 +19,8 @@ class CreateJobsTable extends Migration
             $table->string('job_cat');
             $table->string('job_desc');
             $table->string('job_stat');
+            $table->string('short_desc');
+            $table->string('skills');
             $table->timestamps();
         });
     }

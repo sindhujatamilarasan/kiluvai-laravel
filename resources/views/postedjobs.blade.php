@@ -2,6 +2,9 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 /* Webpixels CSS */
 /* Utility and component-centric Design System based on Bootstrap for fast, responsive UI development */
@@ -23,6 +26,15 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+table.table td a.view {
+    color: #03A9F4;
+}
+table.table td a.edit {
+    color:#1f7048;
+}
+table.table td a.delete {
+    color: #E34724;
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -142,6 +154,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                     <th scope="col">Job Description</th>
                                     <th scope="col">Job Posted date</th>
                                     <th scope="col">Job status</th>
+                                 
                                     <th scope="col">Action</th>
                                   
                                 </tr>
@@ -150,7 +163,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                             
                             <tbody>
                               
-                                
+                                 
                             @foreach($job as $data)
                          
                                 <tr>
@@ -181,12 +194,15 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                       
                                  
                                      
-                                    <td class="text-center">
+                                    <td>
+                                   
+                                   
+                            <a href="#" class="view"  data-placement="top" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a href="{{url('edit',[$data['id']])}}" class="edit"  data-placement="top" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="{{route('jobs/delete',[$data['id']])}}" class="delete"  onclick="return confirm('Are you sure you want to perform this action ?')"   data-placement="top" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                      
                                         
-                                        <button type="button" class="btn btn-sm btn-square  text-danger-hover">
-                                        <a href="{{url('edit',[$data['id']])}}" class="btn btn-sm btn-success">Edit</a>
-                                        <a href="{{route('jobs/delete',[$data['id']])}}"  onclick="return confirm('Are you sure you want to perform this action ?')" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
-                                        </button>
+                                 
                                     </td>
                                 </tr>
                                 @endforeach 
@@ -204,15 +220,6 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     $(document).ready(function() {
           $('#dataTable').DataTable();
     });
-
-    $('.delete_user').click(function(){
-  if( confirm('Are you sure?') )
-  {
-    var id = $(this).attr('id');
-
-  }
-});
-
-});
-
 </script>
+
+

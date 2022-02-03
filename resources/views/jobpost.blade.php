@@ -168,15 +168,7 @@
          <div class="col-md-6">
             <form method="POST" action="{{url('jobpost-form')}}">
                @csrf 
-               <div class="form-group">
-                  <label>
-                     <h4 class="title">Job status <span style="color:red">*</span></h4>
-                  </label>
-                  <br>
-                  <input type="radio" name='job_status' value="1" /> Published<br/>
-                  <input type="radio" name='job_status' value="0" checked/> Unpublished<br/>
-                 
-               </div>
+              
                <div class="form-group">
                   <label>
                      <h4 class="title">Job title <span style="color:red">*</span></h4>
@@ -185,7 +177,7 @@
                   @error('job_title')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                   @enderror
-               </div>
+               </div><br>
                <div class="form-group">
                   <label>
                      <h4 class="title"  class="@error('job_catogory') is-invalid @enderror form-control">Job category <span style="color:red">*</span></h4>
@@ -219,6 +211,25 @@
                </div>
          </div>
       </div>
+      <div class="form-group">
+                  <label>
+                     <h4 class="title">Job status <span style="color:red">*</span></h4>
+                  </label>
+                  <br>
+                  <input type="radio" name='job_status' value="1" /> Published<br/>
+                  <input type="radio" name='job_status' value="0" checked/> Unpublished<br/>
+                 
+               </div>
+               <div class="form-group">
+                  <label>
+                     <h4 class="title">Required Skills</h4>
+                  </label>
+                  <input type="text" name="skills"  placeholder="Required Skills..."  class="form-control" class="@error('skills') is-invalid @enderror form-control"/>
+                  @error('skills')
+                  <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                  @enderror
+               </div><br>
+
       <button type="submit" class="btnSubmit">Submit</button>
       </form>
    </div>

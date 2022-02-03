@@ -21,8 +21,13 @@ class InterviewController extends Controller
                //for fresher viw page
                 public function fresher($id)
                 {
-                    $jobdata=Job::where('id', $id)->get(['id','job_desc','short_desc']);
-                    return view ('fresher')->with('jobdata',$jobdata);
+
+                    $jobdata=Job::where('id', $id)->get(['id','job_desc','short_desc','skills']);
+                    $skill_set=$jobdata[0]->skills;
+                    $skills= explode(",",$skill_set);
+                 
+                   
+                    return view ('fresher')->with('jobdata',$jobdata)->with('skills',$skills);
                 
                 }
 
@@ -97,7 +102,7 @@ class InterviewController extends Controller
                     'date_from' => 'required',
                     'currentctc' => 'required|numeric',
                     'expectedctc' => 'required|numeric',
-                    'noticeperiod' => 'required|alpha_num'
+                    'noticeperiod' => 'required|numeric'
                     ]);
                     if ($validatedData->fails())
                     {
@@ -149,6 +154,7 @@ class InterviewController extends Controller
                         $job->job_cat = $request->input('job_catagory');
                         $job->job_stat = $request->input('job_status');
                         $job->short_desc= $request->input('short_description')??'';
+                        $job->skills = $request->input('skills');
                        
                         $job->save();  
                        
