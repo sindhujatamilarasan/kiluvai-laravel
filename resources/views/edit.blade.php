@@ -130,6 +130,7 @@
       </div>
    </div>
 </nav>
+
 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
 <!-- Header -->
 <header class="bg-surface-primary border-bottom pt-6">
@@ -143,6 +144,13 @@
       </div>
    </div>
 </header>
+`                     @if(session()->has('message'))
+                     <center>
+                        <div class="alert alert-success">
+                           {{ session()->get('message') }}
+                        </div>
+                        </center>
+                     @endif`
 <div class="container register-form" id="main">
 <div class="form">
    <div class="note">
@@ -151,7 +159,7 @@
    <div class="form-content">
       <div class="row ">
          <div class="col-md-6">
-            <form method="POST" action="{{ url('update/'. $job->id ) }} ">
+            <form method="POST" action="{{ url('update/'.$job->id ) }} ">
                @csrf 
                <div class="form-group">
                   <label>
@@ -218,9 +226,7 @@
    $(document).ready(function() {
          $('#dataTable').DataTable();
    });
-   
-   
-   
+
    
    
    

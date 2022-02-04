@@ -156,7 +156,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title">Phone Number <span style="color:red">*</span></h4></label>
-                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phone') }}" class="@error('phonenumber') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phonenumber" aria-describedby="basic-addon1"  />
+                            <input  type="num" class="form-control" aria-label="Card Holder" value="{{ Request::old('phonenumber') }}" class="@error('phonenumber') is-invalid @enderror form-control"placeholder="Your Contact Number" name="phonenumber" aria-describedby="basic-addon1"  />
                             @error('phonenumber')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -175,7 +175,7 @@
                             </div>
                             <div class="form-group">
                             <label><h4 class="title">Expected CTC (per Month) <span style="color:red">*</span></h4></label><br>
-                            <input id="card-holder" type="text" name="expectedctc" class="form-control" value="{{ Request::old('expctc') }}" placeholder="Enter expected CTC..." class="@error('expected ctc') is-invalid @enderror form-control" aria-label="Card Holder" aria-describedby="basic-addon1">
+                            <input id="card-holder" type="text" name="expectedctc" class="form-control" value="{{ Request::old('expectedctc') }}" placeholder="Enter expected CTC..." class="@error('expected ctc') is-invalid @enderror form-control" aria-label="Card Holder" aria-describedby="basic-addon1">
                             @error('expectedctc')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror   
@@ -193,7 +193,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title"> Upload your resume (accept only pdf) <span style="color:red">*</span></h4></label>
-                                <input type="file" class="form-control" name="file"   value="{{ Request::old('file') }}" accept="application/pdf class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
+                                <input type="file" class="form-control" name="file"   value="{{ Request::old('file') }}" accept="application/pdf" class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel">
                                 @error('file')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror

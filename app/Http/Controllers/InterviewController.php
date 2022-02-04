@@ -37,6 +37,13 @@ class InterviewController extends Controller
                      return view ('jobpost');
                 }
 
+                //for detail view
+                public function details()
+                {
+                     return view ('details');
+                }
+            
+
                  //for admin postedjobs view form
                 public function postedjobs(Job $job)
 
@@ -57,10 +64,11 @@ class InterviewController extends Controller
                 //for  fresher store form validation
                 public function store(Request $request,Job $job)
                 {
+                 
                     $validatedData = Validator::make($request->all(),
                     [
                     'name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/',
-                    'Graduation' => 'required|regex:/^[a-zA-ZÑñ\s]+$/',
+                    'Graduation' => 'required|regex:/^[A-Za-z. -]+$/',
                     'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10|',
                     'file' => 'required|mimes:pdf,docx|max:2500',
                     'skill' => 'required',
@@ -73,18 +81,25 @@ class InterviewController extends Controller
                         return redirect()->back()->witherrors($validatedData)->withInput();
                     }
                     else
-                    {
+                    { 
+                        
+                       
+                        
                         $Fresher= new Fresher();
                         $Fresher->name = $request->input('name');
                         $Fresher->job_id = $request->input('hidden');
                         $Fresher->Graduation = $request->input('Graduation');
                         $Fresher->phone = $request->input('phone');
-                        $Fresher->file = $request->input('file')??'';
+
+                        $fileName = $request->file->getClientOriginalName();
+                        $register['filename']= $fileName;
+                        $Fresher->file =  $request->file->move(public_path('uploads'), $fileName);
+
                         $Fresher->location = ($request->input('location') !='on')?$request->input('location'):$request->input('other_location');
                         $Fresher->lang= serialize($request->input('skill'));
                         $Fresher->email = $request->input('email');
                         $Fresher->save();
-                        return view ('index')->with('job',Job::where('job_stat', 1)->get());
+                        return redirect()->route('index')->with('job',Job::where('job_stat', 1)->get())->with('success', 'Application Submitted Successfully !!!');
                     }
                 
                 }
@@ -123,10 +138,14 @@ class InterviewController extends Controller
                         $Experienced->expctc = $request->input('expectedctc');
                         $Experienced->noticeperiod = $request->input('noticeperiod');
                         $Experienced->exp = ($request->input('exp')!= 'on')?$request->input('exp') :$request->input('exp_others') ;
-                        $Experienced->file = $request->input('file')??'';
+                        
+                        $fileName = $request->file->getClientOriginalName();
+                        $register['filename']= $fileName;
+                        $Experienced->file =  $request->file->move(public_path('uploads'), $fileName);
+
                         $Experienced->save();
                         
-                        return redirect('index')->with('job',Job::where('job_stat', 1)->get(['job_title','job_desc','job_cat']));
+                        return redirect()->route('index')->with('job',Job::where('job_stat', 1)->get(['job_title','job_desc','job_cat']))->with('success', 'Application Submitted Successfully !!!');
                     }
                 }
 
@@ -167,7 +186,7 @@ class InterviewController extends Controller
                 {
                     $test1=[];  
                     $test2=[];  
-                    $Fresher_records= Fresher::orderBy('created_at','DESC')->get()->toArray();
+                    $Fresher_records= Fresher::get()->toArray();
 
                     if(!empty($Fresher_records))
                     {
@@ -180,7 +199,7 @@ class InterviewController extends Controller
                 
                     }
 
-                   $Experienced_records=Experienced::orderBy('created_at','DESC')->get()->toArray();
+                   $Experienced_records=Experienced::get()->toArray();
 
                     if(!empty( $Experienced_records))
                      {
@@ -202,7 +221,43 @@ class InterviewController extends Controller
                 {
                     $job = DB::table('jobs')->where('id', $id)->first();
                     return view ('edit',compact('job'));
+                  
+                }
+
+                //for  view form 
+                public function view($id)
+                {
+                    $test1=[];  
+                    $test2=[];  
+                    $Fresher_records= Fresher::where('job_id',$id)->orderBy('created_at','DESC')->get()->toArray();
+
+                    if(!empty($Fresher_records))
+                    {
+                        foreach($Fresher_records as $record)
+                        {
+                                $record["from"]="fresher";
+                                $record['posted_for']=Job::find($record["job_id"])->job_title;
+                                $test1[]=$record;
+                        }
                 
+                    }
+
+                   $Experienced_records=Experienced::where('job_id',$id)->orderBy('created_at','DESC')->get()->toArray();
+
+                    if(!empty( $Experienced_records))
+                     {
+                        foreach($Experienced_records as $record)
+                        {
+                                $record["from"]="Experience";
+                                $record['posted_for']=Job::find($record["job_id"])->job_title;
+                                $test2[]=$record;
+                         }
+                    }
+                    $total_records=collect(array_merge( $test1, $test2));
+
+                    
+                    return view ('view')->with('total_records',$total_records);
+
                 }
 
                 //for dashboard listing delete 
@@ -250,7 +305,7 @@ class InterviewController extends Controller
                         $jobs->job_cat= $request->input('job_cat');
                         $jobs->short_desc = $request->input('short_desc');
                         $jobs->update();
-                        return redirect('postedjobs');
+                        return redirect()->back()->with('message', 'Updated Successfully!!!');
                     }  
                 
 

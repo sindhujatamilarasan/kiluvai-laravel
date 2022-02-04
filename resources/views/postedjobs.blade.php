@@ -144,7 +144,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                     </div>
                 </div>
                     <div class="table-responsive">
-                        <table class="table table-hover" width="100%" id="dataTable">
+                        <table class="table table-striped" width="100%" id="dataTable">
                             <thead class="thead-light">
                           
                                 <tr>
@@ -162,7 +162,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                           
                             
                             <tbody>
-                              
+                           
                                  
                             @foreach($job as $data)
                          
@@ -197,7 +197,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                     <td>
                                    
                                    
-                            <a href="#" class="view"  data-placement="top" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a href="{{url('view',[$data['id']])}}"class="view"  data-placement="top" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
                             <a href="{{url('edit',[$data['id']])}}" class="edit"  data-placement="top" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="{{route('jobs/delete',[$data['id']])}}" class="delete"  onclick="return confirm('Are you sure you want to perform this action ?')"   data-placement="top" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                                       

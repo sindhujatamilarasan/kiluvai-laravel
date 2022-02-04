@@ -48,7 +48,7 @@
          <ul class="navbar-nav">
             <li class="nav-item">
                <a class="nav-link" href="{{url('admindash')}}">
-               <i class="bi bi-house"></i><b>Dashboard</b>
+               <i class="bi bi-house"></i>Dashboard
                </a>
             </li>
             <li class="nav-item">
@@ -58,7 +58,7 @@
             </li>
             <li class="nav-item">
                <a class="nav-link" href="{{url('postedjobs')}}">
-               <i class="bi bi-bookmarks"></i>Posted jobs
+               <i class="bi bi-bookmarks"></i><b>Posted jobs</b>
                </a>
             </li>
             <!--<li class="nav-item">
@@ -101,14 +101,15 @@
          </div>
    </header>
   <br>
-   <!-- Card stats -->
-   <div class="row g-6 mb-6">
+
+   
+   <div class="row g-6 mb-6"><br>
     <div class="col-xl-3 col-sm-6 col-12">
         <div class="card shadow border-0">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of registration</span>
+                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of Applicants</span>
                         <span class="h3 font-bold mb-0">{{count($total_records)}}</span>
                     </div>
                          <div class="col-auto">
@@ -120,23 +121,8 @@
                  </div>
              </div>
          </div>
-   <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card shadow border-0">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">No of Selected Candidates</span>
-                        <span class="h3 font-bold mb-0">5</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                             <i class="bi bi-people"></i>
-                        </div>
-                    </div>
-                 </div>
-           </div>
-       </div>
-   </div>
+         <!-- Card stats 
+  
    <div class="col-xl-3 col-sm-6 col-12">
         <div class="card shadow border-0">
             <div class="card-body">
@@ -171,10 +157,10 @@
              </div>
          </div>
     </div>
-   </div>
+   </div>-->
    <div class="card shadow border-0 mb-3">
         <div class="card-header">
-            <h4 class="mb-0">Applications</h4></div>
+            <h4 class="mb-0"> Total Applicant For this Job</h4></div>
             </div><br> 
    
       <table id="example" class="table table-striped"  style="width:100%">
@@ -220,7 +206,7 @@
                             </td>
                             <td class="text-center">
                             <button type="button" class="btn btn-sm btn-square  text-danger-hover">
-                            <a href="{{route('details',[$data['id'],$data['from']])}}" class="btn btn-sm btn-success">View</a>
+                            <a href="#" class="btn btn-sm btn-success">View</a>
                             <a href="{{route('delete',[$data['id'],$data['from']])}}" onclick="return confirm('Are you sure you want to perform this action ?')" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
                             </button>
                             </td>

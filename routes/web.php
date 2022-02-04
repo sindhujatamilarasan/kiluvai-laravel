@@ -26,9 +26,12 @@ use App\http\controllers\InterviewController;
 
     Route::group(['middleware' => ['auth']], function() 
     {
-         Route::get('logout', 'LogoutController@perform')->name('logout.perform');});
+
+    Route::get('logout', 'LogoutController@perform')->name('logout.perform');});
 
     Route::get('delete/{id}/{from}','InterviewController@destroy')->name('delete');
+
+    Route::get('details/{id}/{from}','InterviewController@details')->name('details');
   
     Route::get('delete/{id}','InterviewController@delete')->name('jobs/delete');
 
@@ -41,13 +44,13 @@ use App\http\controllers\InterviewController;
 
 
     
-    Route::get('index','InterviewController@index');
+    Route::get('index','InterviewController@index')->name('index');
 
     Route::get('job/{id}/fresher','InterviewController@fresher');
 
     Route::get('job/{id}/exp','InterviewController@exp');
  
-    Route::post('store-form','InterviewController@store'); 
+    Route::post('store-form','InterviewController@store')->name('store'); 
 
     Route::post('exp-form','InterviewController@experience'); 
 
@@ -59,9 +62,11 @@ use App\http\controllers\InterviewController;
  
     Route::post('jobpost-form','InterviewController@job');
  
-    Route::get('postedjobs','InterviewController@postedjobs')->middleware('auth');
+    Route::get('postedjobs','InterviewController@postedjobs')->middleware('auth')->name('postedjobs');
  
     Route::get('edit/{id}','InterviewController@edit')->middleware('auth');
+
+    Route::get('view/{id}','InterviewController@view')->middleware('auth');
  
    
     Auth::routes();

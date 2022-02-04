@@ -281,13 +281,19 @@ line-height: 1.1;
 }
 .form-check-label1{
   margin-left: 65px;
-
 font-family: inherit;
 font-weight:100px;
 color:#008FD4;
 font-size:30px;
 line-height: 1.1;
 }
+#info{
+margin-top:20px;
+width:400px;
+height:50px;
+
+}
+
 
 
 </style>
@@ -329,7 +335,14 @@ line-height: 1.1;
   </div>
 </div>
 @csrf  
+@if($message = Session::get('success'))
+       <center>
+        <div class="alert alert-success" id="info">
+            <p>{{$message}}</p>
 
+        </div>
+        </center>  
+        @endif
 <div class="container">
             <div class="row">
                  <div class="col-lg-10 mx-auto mb-4">
@@ -452,7 +465,15 @@ line-height: 1.1;
                                 @endforeach 
                           </div>
                     </form>
-                   
+              <script>
+               $(document).ready(function(){
+ 
+   setTimeout(function(){
+     
+      $("#info").hide();
+   }, 3000);
+});
+              </script>     
                      
                     
                                    

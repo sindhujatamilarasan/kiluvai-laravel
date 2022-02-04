@@ -154,9 +154,11 @@
    </div>
 </header>
 @if(session()->has('message'))
-    <div class="alert alert-success">
+    <center>
+    <div class="alert alert-success" id="info">
         {{ session()->get('message') }}
     </div>
+   </center>
 @endif
 <div class="container register-form" id="main">
 <div class="form">

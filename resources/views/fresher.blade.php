@@ -50,6 +50,7 @@
 }
 </style>
 </head>
+
 <body>
 <nav class="navbar navbar-expand navbar-light sticky-top">
         <a class="navbar-brand" ><img src="https://www.kiluvai.com/sites/default/files/kiluvai-logo.png"></a>
@@ -70,7 +71,7 @@
         </div>
 
               </nav>
-
+             
           
 <div class="container register-form" id="main">
     
@@ -187,7 +188,7 @@
                             <div class="form-group">
                             
                             <label><h4 class="title"> Upload your resume(accept only pdf) <span style="color:red">*</span></h4></label>
-                                <input type="file" class="form-control" name="file" value="{{ Request::old('file') }}"class="@error('file') is-invalid @enderror form-control" accept="application/pdf, application/vnd.ms-excel" >
+                                <input type="file"  name="file"  class="@error('file') is-invalid @enderror form-control"   value="{{ Request::old('file') }}" accept="application/pdf" >
                                 @error('file')
                   <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -198,10 +199,13 @@
                        
                     <button type="submit" value="" class="btnSubmit">Submit</button>
                     </div>
+                  
 </form>
+       
               
             </div>
         </div>
+  
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -223,6 +227,7 @@
         
         });
             </script>
+  
             
             
   
