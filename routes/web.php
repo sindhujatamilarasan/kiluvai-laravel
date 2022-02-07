@@ -50,9 +50,9 @@ use App\http\controllers\InterviewController;
 
     Route::get('job/{id}/exp','InterviewController@exp');
  
-    Route::post('store-form','InterviewController@store')->name('store'); 
+    Route::post('store-form','InterviewController@store')->name('store')->middleware('auth'); 
 
-    Route::post('exp-form','InterviewController@experience'); 
+    Route::post('exp-form','InterviewController@experience')->middleware('auth'); 
 
         
     Route::get('admindash','InterviewController@admindash')->middleware('auth');

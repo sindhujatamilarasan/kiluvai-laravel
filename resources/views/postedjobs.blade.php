@@ -36,6 +36,7 @@ table.table td a.edit {
 table.table td a.delete {
     color: #E34724;
 }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
@@ -194,16 +195,26 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                                       
                                  
                                      
-                                    <td>
-                                   
-                                   
-                            <a href="{{url('view',[$data['id']])}}"class="view"  data-placement="top" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="{{url('edit',[$data['id']])}}" class="edit"  data-placement="top" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="{{route('jobs/delete',[$data['id']])}}" class="delete"  onclick="return confirm('Are you sure you want to perform this action ?')"   data-placement="top" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                      
-                                        
-                                 
-                                    </td>
+                                    <td style="width: 20%;">
+								<a href="{{url('view',[$data['id']])}}"  class="view">
+									<span class="fa-stack" >
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-eye fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a href="{{url('edit',[$data['id']])}}"  class="edit">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a href="{{route('jobs/delete',[$data['id']])}}"  onclick="return confirm('Are you sure you want to perform this action ?')"  class="delete">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</td>
                                 </tr>
                                 @endforeach 
                             </tbody>

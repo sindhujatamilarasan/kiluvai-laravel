@@ -25,8 +25,6 @@ class InterviewController extends Controller
                     $jobdata=Job::where('id', $id)->get(['id','job_desc','short_desc','skills']);
                     $skill_set=$jobdata[0]->skills;
                     $skills= explode(",",$skill_set);
-                 
-                   
                     return view ('fresher')->with('jobdata',$jobdata)->with('skills',$skills);
                 
                 }
@@ -38,9 +36,41 @@ class InterviewController extends Controller
                 }
 
                 //for detail view
-                public function details()
+                public function details($id)
                 {
-                     return view ('details');
+                  
+                    $test1=[];  
+                    $test2=[];  
+                    $skill=[];
+                    $Fresher_records= Fresher::where('id', $id)->get();
+                
+                    if(!empty($Fresher_records))
+                    {
+                        
+                        foreach($Fresher_records as $record)
+                        {
+                                $skill=unserialize($Fresher_records[0]->lang);
+                                $record["from"]="fresher";
+                                $record['posted_for']=Job::find($record["job_id"])->job_title;
+                                $test1[]=$record;
+                        }
+                
+                    }
+
+                   $Experienced_records=Experienced::where('id', $id)->get();
+                     
+                    if(!empty( $Experienced_records))
+                     {
+                        foreach($Experienced_records as $record)
+                        {
+                                $record["from"]="Experience";
+                                $record['posted_for']=Job::find($record["job_id"])->job_title;
+                                $test2[]=$record;
+                         }
+                    }
+                    $total_records=collect(array_merge( $test1, $test2));
+                    
+                     return view ('details')->with('total_records',$total_records)->with('skill',$skill);
                 }
             
 
@@ -83,8 +113,6 @@ class InterviewController extends Controller
                     else
                     { 
                         
-                       
-                        
                         $Fresher= new Fresher();
                         $Fresher->name = $request->input('name');
                         $Fresher->job_id = $request->input('hidden');
@@ -93,9 +121,10 @@ class InterviewController extends Controller
 
                         $fileName = $request->file->getClientOriginalName();
                         $register['filename']= $fileName;
-                        $Fresher->file =  $request->file->move(public_path('uploads'), $fileName);
+                        $Fresher->file =  $request->file->move('uploads', $fileName);
 
                         $Fresher->location = ($request->input('location') !='on')?$request->input('location'):$request->input('other_location');
+                       
                         $Fresher->lang= serialize($request->input('skill'));
                         $Fresher->email = $request->input('email');
                         $Fresher->save();
@@ -141,7 +170,7 @@ class InterviewController extends Controller
                         
                         $fileName = $request->file->getClientOriginalName();
                         $register['filename']= $fileName;
-                        $Experienced->file =  $request->file->move(public_path('uploads'), $fileName);
+                        $Experienced->file =  $request->file->move('uploads', $fileName);
 
                         $Experienced->save();
                         
@@ -184,6 +213,7 @@ class InterviewController extends Controller
                 //for admindashboard view form 
                 public function admindash()
                 {
+                  
                     $test1=[];  
                     $test2=[];  
                     $Fresher_records= Fresher::get()->toArray();
@@ -308,6 +338,6 @@ class InterviewController extends Controller
                         return redirect()->back()->with('message', 'Updated Successfully!!!');
                     }  
                 
-
+                   
     }
     

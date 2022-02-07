@@ -177,7 +177,7 @@
             <h4 class="mb-0">Applications</h4></div>
             </div><br> 
    
-      <table id="example" class="table table-striped"  style="width:100%">
+      <table id="example" class="table table-striped"  style="width:95%">
                     <thead class="thead-light">
                         <tr>
                                     <th scope="col">Reg.No</th>
@@ -219,11 +219,12 @@
                             Applied
                             </td>
                             <td class="text-center">
-                            <button type="button" class="btn btn-sm btn-square  text-danger-hover">
-                            <a href="{{route('details',[$data['id'],$data['from']])}}" class="btn btn-sm btn-success">View</a>
-                            <a href="{{route('delete',[$data['id'],$data['from']])}}" onclick="return confirm('Are you sure you want to perform this action ?')" class="btn btn-sm btn btn-danger delete_user" style="margin:5px;">Delete</a>
+                            <button type="button" class="btn btn-xs btn-square  text-danger-hover">
+                            <a href="{{route('details',[$data['id'],$data['from']])}}" class="btn btn-sm btn-success btn-xs">View</a>
+                            <a href="{{route('delete',[$data['id'],$data['from']])}}" onclick="return confirm('Are you sure you want to perform this action ?')" class="btn btn-sm btn btn-danger btn-xs" style="margin:5px;">Delete</a>
                             </button>
                             </td>
+                            
                       </tr>
                 @endforeach 
                 </tbody>
