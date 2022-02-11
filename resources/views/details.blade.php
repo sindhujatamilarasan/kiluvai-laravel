@@ -47,10 +47,7 @@ body {
     margin-left: 25px
 }
 
-.image {
-    width: 300px;
-    height: 300px
-}
+
 
 .card2 {
     border-bottom-right-radius: 10px;
@@ -482,7 +479,7 @@ body {
 .rating>label::before {
     content: "\2605";
     position: absolute;
-    opacity: 0
+    opacity: 0;
 }
 
 .rating>label:hover:before,
@@ -587,10 +584,11 @@ body {
         <div class="row d-flex">
             <div class="col-lg-6">
                 <div class="card1 bg-light pb-5">
-              
+             
+          
                 @foreach($total_records as $data)
              
-              
+                
                     <div class="row px-3 justify-content-center mt-4 mb-5"> <embed src="{{ asset($data[('file')])}}" class="image"  style="width:850px; height:950px;"> </div>
                     <div class="row px-3 text-center justify-content-center">
                  
@@ -603,6 +601,18 @@ body {
 
                     <div class="contact-info-section margin-40px-tb">
                         <ul class="list-style9 no-margin">
+                        <li>
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <i class="fas fa-check-square text-black"></i>
+                                        <strong class="margin-10px-left text-black">Applied for:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>{{$data[('posted_for')]}}</p>
+                                    </div>
+                                </div>
+
+                                </li>
                             <li>
 
                                 <div class="row">
@@ -629,8 +639,9 @@ body {
                                 </div>
 
                             </li>
-                          
                               
+                              
+                          
                             @if(!empty($data[('Graduation')]))
                             <li>
                                 <div class="row">
@@ -723,7 +734,7 @@ body {
                                 <strong class="margin-10px-left text-Blue">Expected CTC :</strong>
                             </div>
                             <div class="col-md-7 col-7">
-                                <p>{{$data[('expctc')]}}</p>
+                                <p>{{$data[('expctc')]}}</p>+
                             </div>
                         </div>
 
@@ -789,110 +800,131 @@ body {
                     
                     <a href="#">
                     <button type="button" class="btn btn-dark-green">View</button></a>
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form"> Feedback </button>
-
+                
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form" > Feedback </button>
+          
+                    
+                
                 </div>
-                                 
-              
-<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" >
-        <div class="modal-header">
-        <h3 class="modal-title"><strong> Feedback</strong></h3>
-        <div class="text-right cross" data-dismiss="modal"> <i class="fa fa-times mr-2"></i> </div>
-      </div>
-
-           
-            <div class="card-body" > 
-                <div class="comment-box">
-                    <h4>Candidate Rating</h4><br>
-                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
-                    <br>    <br>
-                    <h4>Candidate Status</h4>
-                    <div class="radio">
-                  <label>
-   <input type="radio" name="o3" value="1">
-   <span class="cr" style="color:Green;"><i class="cr-icon fas fa-check-circle"></i></span>
-Selected
-   </label>
-</div>
-
-<!-- Checked radio -->
-<div class="radio">
-  <label>
-   <input type="radio" name="o3" value="0" checked>
-   <span class="cr" style="color:red;" ><i class="cr-icon fas fa-check-circle"></i></span>
-   Unselected
-   </label>
-</div><br>
-  <h4>Candidate Remarks</h4>
-                    <div class="comment-area"> <textarea class="form-control" placeholder="  what is your view ?" rows="8" column="6"></textarea> </div>
-                    <div class="text-center mt-4"></div>
-                    <div class="modal-footer">
-                    <a href="#">
-        <button type="button" class="btn btn-green" >Submit</button>
-     
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">Edit</button>
-      </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+          
+    @if(!empty($feedback))
             
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" >
-        <div class="modal-header">
-        <h3 class="modal-title"><strong> Feedback</strong></h3>
-        <div class="text-right cross" data-dismiss="modal"> <i class="fa fa-times mr-2"></i> </div>
-      </div>
+           @foreach($feedback as $feed)  
 
-           
-            <div class="card-body" > 
-                <div class="comment-box">
-                    <h4 style="color:#4e4f48;">Candidate Rating</h4><br>
-                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
-                    <br>    <br>
-                    <h4 style="color:#4e4f48;">Candidate Status</h4>
-                    <div class="radio">
-                  <label style="color:#4e4f48;">
-   <input type="radio" name="o3" value="1">
-   <span class="cr" style="color:Green;"><i class="cr-icon fas fa-check-circle"></i></span>
-      Selected
-   </label>
-</div>
-
-<!-- Checked radio -->
-<div class="radio">
-  <label style="color:#4e4f48;">
-   <input type="radio" name="o3" value="0" checked>
-   <span class="cr" style="color:red;" ><i class="cr-icon fas fa-check-circle"></i></span>
-   Unselected
-   </label>
-</div><br>
-  <h4 style="color:#4e4f48;">Candidate Remarks</h4>
-                    <div class="comment-area"> <textarea class="form-control" placeholder="  what is your view ?" rows="8" column="6"></textarea> </div>
-                    <div class="text-center mt-4"></div>
-                    <div class="modal-footer">
-                    <a href="#">
-      
      
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form">Update  </button>
-      </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+            <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" >
+                        <div class="modal-header">
+                            <h3 class="modal-title"><strong> Feedback</strong></h3>
+                            <div class="text-right cross" data-dismiss="modal"> <i class="fa fa-times mr-2"></i> 
+                            </div>
+                        </div>
+                       <div class="card-body" > 
+                            <div class="comment-box">
+                                <h4>Candidate Rating</h4><br>
+                                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> 
+                                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
+                                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                 <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                                 <br><br>
+                                 <h4>Candidate Status</h4>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="status" value="selected" {{ ($feed[('status')]=="selected")? "checked" : "" }}>
+                                        <span class="cr" style="color:Green;"><i class="cr-icon fas fa-check-circle"></i></span>
+                                        Selected
+                                    </label>
+                                 </div>
+                                <div class="radio">
+                                    <label>
+                                    <input type="radio" name="status" value="unselected" {{ ($feed[('status')]=="unselected")? "checked" : "" }}/>
+                                    <span class="cr" style="color:red;" ><i class="cr-icon fas fa-check-circle"></i></span>
+                                    Unselected
+                                    </label>
+                                </div>
+                                <div>
+                                  <input type="hidden" name='from' value="{{$data[('from')]}}"/>
+                               </div>
+                               <div>
+                                 <input type="hidden" name='candidate_id' value="{{$data[('id')]}}"/>
+                              </div>
+                                 <br>
+                                 <h4>Candidate Remarks</h4>
+                                <div class="comment-area">
+                                    <textarea class="form-control"  name="remark" rows="8" column="6"> {{$feed[('remark')]}}</textarea>
+                                </div>
+                   
+                               <div class="modal-footer">
+                                        
+                            <button type="button" class="btn btn-danger" >update</button>
+                            </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endforeach
-                    </body>
-</html>
+    @endif  
+      <form method="POST" action="{{url('feedback')}}"> 
+        @csrf      
+           <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered" role="document">
+               <div class="modal-content" >
+                  <div class="modal-header">
+                     <h3 class="modal-title"><strong> Feedback</strong></h3>
+                   <div class="text-right cross" data-dismiss="modal"> <i class="fa fa-times mr-2"></i> </div>
+                 </div>
+            <div class="card-body" > 
+                <div class="comment-box">
+                    <h4>Candidate Rating</h4><br>
+                       <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                    <br><br>
+                       <h4>Candidate Status</h4>
+                    <div class="radio">
+                       <label>
+                             <input type="radio" name="status" value="selected">
+                                  <span class="cr" style="color:Green;"><i class="cr-icon fas fa-check-circle"></i></span>
+                                          Selected
+                       </label>
+                    </div>
+                    <div>
+                        <input type="hidden" name='from' value="{{$data[('from')]}}"/>
+                        </div>
+                        <div>
+                        <input type="hidden" name='candidate_id' value="{{$data[('id')]}}"/>
+                    </div>
+<!-- Checked radio -->
+                    <div class="radio">
+                    <label>
+                        <input type="radio" name="status" value="unselected" checked/>
+                        <span class="cr" style="color:red;" ><i class="cr-icon fas fa-check-circle"></i></span>
+                        Unselected
+                    </label>
+                    </div><br>
+                        <h4>Candidate Remarks</h4>
+                    <div class="comment-area"> <textarea class="form-control" placeholder="  what is your view ?" name="remark" rows="8" column="6"></textarea> </div>
+                    <div class="text-center mt-4"></div>
+                    <div class="modal-footer">
+                  
+                        <button type="submit" class="btn btn-green" >Submit</button>
+     
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                                        
+   </div>
+         </div>
+            </div>
+    </div>
+</div>
+
+</form>
+@endforeach 
+</body>
+ </html>                    
+   

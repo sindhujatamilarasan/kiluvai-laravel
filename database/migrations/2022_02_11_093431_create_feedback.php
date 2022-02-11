@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFresherTable extends Migration
+class CreateFeedback extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateFresherTable extends Migration
      */
     public function up()
     {
-        Schema::create('fresher', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('Graduation');
-            $table->string('email');
-            $table->string('pg');
-            $table->string('location');
-            $table->string('phone');
-            $table->string('lang');
-            $table->string('file');
+            $table->string('rating');
+            $table->string('status');
+            $table->string('remark');
+            $table->string('candidate_id');
             $table->string('from');
             $table->timestamps();
         });
@@ -35,6 +31,6 @@ class CreateFresherTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fresher');
+        Schema::dropIfExists('Feedback');
     }
 }

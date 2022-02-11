@@ -7,6 +7,7 @@ Use \Carbon\Carbon;
 use App\Job;
 use App\Fresher;
 use App\Experienced;
+use App\Feedback;
 use DB;
 
 class InterviewController extends Controller
@@ -36,13 +37,13 @@ class InterviewController extends Controller
                 }
 
                 //for detail view
-                public function details($id)
+                public function details($id,$from)
                 {
-                  
+                   
                     $test1=[];  
                     $test2=[];  
                     $skill=[];
-                    $Fresher_records= Fresher::where('id', $id)->get();
+                    $Fresher_records= Fresher::where('id', $id)->where('from', $from)->get();
                 
                     if(!empty($Fresher_records))
                     {
@@ -50,27 +51,29 @@ class InterviewController extends Controller
                         foreach($Fresher_records as $record)
                         {
                                 $skill=unserialize($Fresher_records[0]->lang);
-                                $record["from"]="fresher";
                                 $record['posted_for']=Job::find($record["job_id"])->job_title;
                                 $test1[]=$record;
                         }
                 
                     }
 
-                   $Experienced_records=Experienced::where('id', $id)->get();
+                   $Experienced_records=Experienced::where('id', $id)->where('from', $from)->get();
                      
                     if(!empty( $Experienced_records))
                      {
                         foreach($Experienced_records as $record)
                         {
-                                $record["from"]="Experience";
+                              
                                 $record['posted_for']=Job::find($record["job_id"])->job_title;
                                 $test2[]=$record;
                          }
                     }
                     $total_records=collect(array_merge( $test1, $test2));
-                    
-                     return view ('details')->with('total_records',$total_records)->with('skill',$skill);
+
+                    $feedback=Feedback::where('candidate_id',$id)->get()->toArray();
+                 
+                   
+                     return view ('details')->with('total_records',$total_records)->with('skill',$skill)->with('feedback',$feedback);
                 }
             
 
@@ -116,6 +119,7 @@ class InterviewController extends Controller
                         $Fresher= new Fresher();
                         $Fresher->name = $request->input('name');
                         $Fresher->job_id = $request->input('hidden');
+                        $Fresher->from= $request->input('from');
                         $Fresher->Graduation = $request->input('Graduation');
                         $Fresher->phone = $request->input('phone');
 
@@ -158,6 +162,7 @@ class InterviewController extends Controller
                         $Experienced= new Experienced();
                         $Experienced->name = $request->input('name');
                         $Experienced->job_id = $request->input('hidden');
+                        $Experienced->from = $request->input('from');
                         $Experienced->email = $request->input('email');
                         $Experienced->Current_Company_Name = $request->input('Current_Company_Name');
                         $Experienced->date_from = $request->input('date_from');
@@ -210,6 +215,28 @@ class InterviewController extends Controller
                      }
                 }
 
+
+
+                //for feedback form
+                public function feedback(Request $request)
+                {
+         
+               
+                     
+                        $feedback= new Feedback();
+                        $feedback->rating= $request->input('rating');
+                        $feedback->status = $request->input('status');
+                        $feedback->remark = $request->input('remark');
+                         $feedback->from= $request->input('from');
+                         $feedback->candidate_id= $request->input('candidate_id');
+                      
+                       
+                        $feedback->save();  
+                       
+                        return  redirect()->back();
+                     }
+                
+
                 //for admindashboard view form 
                 public function admindash()
                 {
@@ -222,7 +249,7 @@ class InterviewController extends Controller
                     {
                         foreach($Fresher_records as $record)
                         {
-                                $record["from"]="fresher";
+                             
                                 $record['posted_for']=Job::find($record["job_id"])->job_title;
                                 $test1[]=$record;
                         }
@@ -235,7 +262,7 @@ class InterviewController extends Controller
                      {
                         foreach($Experienced_records as $record)
                         {
-                                $record["from"]="Experience";
+                               
                                 $record['posted_for']=Job::find($record["job_id"])->job_title;
                                 $test2[]=$record;
                          }
@@ -265,7 +292,7 @@ class InterviewController extends Controller
                     {
                         foreach($Fresher_records as $record)
                         {
-                                $record["from"]="fresher";
+                               
                                 $record['posted_for']=Job::find($record["job_id"])->job_title;
                                 $test1[]=$record;
                         }
@@ -278,7 +305,7 @@ class InterviewController extends Controller
                      {
                         foreach($Experienced_records as $record)
                         {
-                                $record["from"]="Experience";
+                               
                                 $record['posted_for']=Job::find($record["job_id"])->job_title;
                                 $test2[]=$record;
                          }

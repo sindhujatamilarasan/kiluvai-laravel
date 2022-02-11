@@ -27,6 +27,7 @@ class CreateExperiencedTable extends Migration
             $table->string('exp');
             $table->string('file');
             $table->string('job_id');
+            $table->string('from');
             $table->timestamps();
         });
     }

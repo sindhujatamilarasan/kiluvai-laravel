@@ -123,6 +123,9 @@
                         <div>
                         <input type="hidden" name='hidden' value="{{$jobdata[0]->id}}"/>
                         </div>
+                        <div>
+                        <input type="hidden" name='from' value="fresher"/>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <label><h4 class="title">Email <span style="color:red">*</span></h4></label>

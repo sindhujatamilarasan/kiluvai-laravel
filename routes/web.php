@@ -32,6 +32,8 @@ use App\http\controllers\InterviewController;
     Route::get('delete/{id}/{from}','InterviewController@destroy')->name('delete');
 
     Route::get('details/{id}/{from}','InterviewController@details')->name('details');
+
+   
   
     Route::get('delete/{id}','InterviewController@delete')->name('jobs/delete');
 
@@ -54,6 +56,7 @@ use App\http\controllers\InterviewController;
 
     Route::post('exp-form','InterviewController@experience')->middleware('auth'); 
 
+    Route::post('feedback','InterviewController@feedback')->name('feedback');
         
     Route::get('admindash','InterviewController@admindash')->middleware('auth');
 
