@@ -97,7 +97,7 @@ class InterviewController extends Controller
                  
                     $validatedData = Validator::make($request->all(),
                     [
-                    'name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/',
+                    'name' => 'required|regex:/^[a-zA-ZÃ‘Ã±\s]+$/',
                     'Graduation' => 'required|regex:/^[A-Za-z. -]+$/',
                     'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10|',
                     'file' => 'required|mimes:pdf,docx|max:2500',
@@ -122,9 +122,9 @@ class InterviewController extends Controller
                         $fileName = $request->file->getClientOriginalName();
                         $register['filename']= $fileName;
                         $Fresher->file =  $request->file->move('uploads', $fileName);
-
+ 
                         $Fresher->location = ($request->input('location') !='on')?$request->input('location'):$request->input('other_location');
-                       
+                        $Fresher->pg = $request->input('pg')??'';
                         $Fresher->lang= serialize($request->input('skill'));
                         $Fresher->email = $request->input('email');
                         $Fresher->save();
@@ -138,8 +138,8 @@ class InterviewController extends Controller
                 {
 
                     $validatedData = Validator::make($request->all(),
-                    ['name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/',
-                    'Current_Company_Name' => 'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
+                    ['name' => 'required|regex:/^[a-zA-ZÃ‘Ã±\s]+$/',
+                    'Current_Company_Name' => 'required|regex:/^[a-zA-ZÃ‘Ã±\s]+$/|max:30',
                     'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                     'file' => 'required|mimes:pdf|max:2500',
                     'email' => 'required|email|unique:users|max:40|regex:/(.+)@(.+)\.(.+)/i',
@@ -202,7 +202,7 @@ class InterviewController extends Controller
                         $job->job_cat = $request->input('job_catagory');
                         $job->job_stat = $request->input('job_status');
                         $job->short_desc= $request->input('short_description')??'';
-                        $job->skills = $request->input('skills');
+                        $job->skills = $request->input('skills')??'';
                        
                         $job->save();  
                        

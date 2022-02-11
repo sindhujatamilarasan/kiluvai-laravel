@@ -1,23 +1,22 @@
 <html>
     <head>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
 
 <style>
 
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
 
-.hm-gradient {
-    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
-}
+
 .darken-grey-text {
     color: #2E2E2E;
 }
@@ -407,7 +406,179 @@ a.text-lightred:hover {
 .bg-lightred {
     background-color: #ff5722
 }
-    </style>
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    display: grid;
+    place-items: center;
+    font-family: 'Manrope', sans-serif;
+    background: #000
+}
+
+.cross {
+    padding: 10px;
+    color: #d6312d;
+    cursor: pointer;
+    font-size: 23px
+}
+
+.cross i {
+    margin-top: -5px;
+    cursor: pointer
+}
+
+
+.comment-area textarea {
+   
+    border: 2px solid #ff0000;
+    border-radius: 20px;
+    height:100px;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+}
+
+.send {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #ff0000
+}
+
+.send:hover {
+    color: #fff;
+    background-color: #f50202;
+    border-color: #f50202
+}
+
+.rating {
+    display: inline-flex;
+    margin-top: -10px;
+    flex-direction: row-reverse
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 28px;
+    font-size: 35px;
+    color: #ff0000;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+.checkbox label:after,
+.radio label:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #a9a9a9;
+  border-radius: .25em;
+  width: 1.3em;
+  height: 1.3em;
+  float: left;
+  margin-right: .5em;
+}
+
+.radio .cr {
+  border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+  position: absolute;
+  font-size: .8em;
+  line-height: 0;
+  top: 50%;
+  left: 13%;
+}
+
+.radio .cr .cr-icon {
+  margin-left: 0.04em;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+  display: none;
+}
+
+.checkbox label input[type="checkbox"]+.cr>.cr-icon,
+.radio label input[type="radio"]+.cr>.cr-icon {
+  opacity: 0;
+}
+
+.checkbox label input[type="checkbox"]:checked+.cr>.cr-icon,
+.radio label input[type="radio"]:checked+.cr>.cr-icon {
+  opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled+.cr,
+.radio label input[type="radio"]:disabled+.cr {
+  opacity: .5;
+}
+.modal-content{ 
+    font-family: 'Poppins', sans-serif; 
+    color:#4e4f48;
+    border-radius:10px;
+   font-weight:500;
+   display: flex;
+    padding: 10px 15px;
+    margin: 80px auto 0;
+    border:1px;
+    border-color:#fff;
+    transition: all 0.3s ease 0s;
+    width:1000px;
+    
+   
+}
+.modal-header{
+  
+    background:#ee9ca7;
+    font-size: 30px;
+    align:center;
+    font-weight:900;
+    color:#fff;
+}
+.btn{
+    border-radius:10px;
+}
+</style>
 
 </head>
 <body>
@@ -420,14 +591,14 @@ a.text-lightred:hover {
                 @foreach($total_records as $data)
              
               
-                    <div class="row px-3 justify-content-center mt-4 mb-5"> <embed src="{{ asset($data[('file')])}}" class="image"  style="width:800px; height:1000px;"> </div>
+                    <div class="row px-3 justify-content-center mt-4 mb-5"> <embed src="{{ asset($data[('file')])}}" class="image"  style="width:850px; height:950px;"> </div>
                     <div class="row px-3 text-center justify-content-center">
                  
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="card2 card border-0 px-4 py-5">
+                <div class="card2 card border-1 px-4 py-5">
                 <h4 class="font-size38 sm-font-size32 xs-font-size30"><b>{{$data[('name')]}}</b></h4><br><br>
 
                     <div class="contact-info-section margin-40px-tb">
@@ -615,13 +786,108 @@ a.text-lightred:hover {
                 <div class="card-body">
                     <a href="{{url('admindash')}}">
                     <button type="button" class="btn btn-elegant">Back</button></a>
-                    <a href="#">
-                    <button type="button" class="btn btn-unique">Feedback</button></a>
+                    
                     <a href="#">
                     <button type="button" class="btn btn-dark-green">View</button></a>
-                    </div>
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form"> Feedback </button>
+
+                </div>
                                  
+              
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+        <div class="modal-header">
+        <h3 class="modal-title"><strong> Feedback</strong></h3>
+        <div class="text-right cross" data-dismiss="modal"> <i class="fa fa-times mr-2"></i> </div>
+      </div>
+
+           
+            <div class="card-body" > 
+                <div class="comment-box">
+                    <h4>Candidate Rating</h4><br>
+                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                    <br>    <br>
+                    <h4>Candidate Status</h4>
+                    <div class="radio">
+                  <label>
+   <input type="radio" name="o3" value="1">
+   <span class="cr" style="color:Green;"><i class="cr-icon fas fa-check-circle"></i></span>
+Selected
+   </label>
+</div>
+
+<!-- Checked radio -->
+<div class="radio">
+  <label>
+   <input type="radio" name="o3" value="0" checked>
+   <span class="cr" style="color:red;" ><i class="cr-icon fas fa-check-circle"></i></span>
+   Unselected
+   </label>
+</div><br>
+  <h4>Candidate Remarks</h4>
+                    <div class="comment-area"> <textarea class="form-control" placeholder="  what is your view ?" rows="8" column="6"></textarea> </div>
+                    <div class="text-center mt-4"></div>
+                    <div class="modal-footer">
+                    <a href="#">
+        <button type="button" class="btn btn-green" >Submit</button>
+     
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">Edit</button>
+      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
             
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+        <div class="modal-header">
+        <h3 class="modal-title"><strong> Feedback</strong></h3>
+        <div class="text-right cross" data-dismiss="modal"> <i class="fa fa-times mr-2"></i> </div>
+      </div>
+
+           
+            <div class="card-body" > 
+                <div class="comment-box">
+                    <h4 style="color:#4e4f48;">Candidate Rating</h4><br>
+                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                    <br>    <br>
+                    <h4 style="color:#4e4f48;">Candidate Status</h4>
+                    <div class="radio">
+                  <label style="color:#4e4f48;">
+   <input type="radio" name="o3" value="1">
+   <span class="cr" style="color:Green;"><i class="cr-icon fas fa-check-circle"></i></span>
+      Selected
+   </label>
+</div>
+
+<!-- Checked radio -->
+<div class="radio">
+  <label style="color:#4e4f48;">
+   <input type="radio" name="o3" value="0" checked>
+   <span class="cr" style="color:red;" ><i class="cr-icon fas fa-check-circle"></i></span>
+   Unselected
+   </label>
+</div><br>
+  <h4 style="color:#4e4f48;">Candidate Remarks</h4>
+                    <div class="comment-area"> <textarea class="form-control" placeholder="  what is your view ?" rows="8" column="6"></textarea> </div>
+                    <div class="text-center mt-4"></div>
+                    <div class="modal-footer">
+                    <a href="#">
+      
+     
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form">Update  </button>
+      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
                 </div>
             </div>
         </div>
