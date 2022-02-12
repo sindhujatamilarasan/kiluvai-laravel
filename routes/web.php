@@ -39,7 +39,7 @@ use App\http\controllers\InterviewController;
 
     Route::post('update/{id}',[InterviewController::class,'update']);
 
-
+    Route::post('feed-update/{id}',[InterviewController::class,'feedupdate'])->name('feedupdate');
 
 
     /* sdfdf */

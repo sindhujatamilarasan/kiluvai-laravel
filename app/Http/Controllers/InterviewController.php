@@ -365,6 +365,18 @@ class InterviewController extends Controller
                         return redirect()->back()->with('message', 'Updated Successfully!!!');
                     }  
                 
+                    public function feedupdate($id,Request $request)
+                    {
+                       
+                        $feedback=Feedback::find($id); 
+                        $feedback->rating= $request->input('rating');
+                        $feedback->status = $request->input('status');
+                        $feedback->remark = $request->input('remark');
+                        $feedback->from= $request->input('from');
+                        $feedback->candidate_id= $request->input('candidate_id');
+                        $feedback->update();
+                        return redirect()->back()->with('message', 'Updated Successfully!!!');
+                    }  
                    
     }
     

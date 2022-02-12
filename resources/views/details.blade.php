@@ -494,6 +494,43 @@ body {
 .rating:hover>input:checked~label:before {
     opacity: 0.4
 }
+
+.rating-edit {
+    display: inline-flex;
+    margin-top: -10px;
+    flex-direction: row-reverse
+}
+
+.rating-edit>input {
+    display: none
+}
+
+.rating-edit>label {
+    position: relative;
+    width: 28px;
+    font-size: 35px;
+    color: #ff0000;
+    cursor: pointer
+}
+
+.rating-edit>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 1;
+}
+
+.rating-edit>label:hover:before,
+.rating-edit>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating-edit>input:checked~label:before {
+    opacity: 1
+}
+
+.rating-edit:hover>input:checked~label:before {
+    opacity: 0.4
+}
 .checkbox label:after,
 .radio label:after {
   content: '';
@@ -574,6 +611,9 @@ body {
 }
 .btn{
     border-radius:10px;
+}
+.star-edit{
+color:red;
 }
 </style>
 
@@ -810,8 +850,9 @@ body {
     @if(!empty($feedback))
             
            @foreach($feedback as $feed)  
-
-     
+            <!--- Edit feedback to fetch dynamic values--->
+            <form method="POST" action="{{ url('feed-update/'. $feed[('id')] ) }} ">
+               @csrf 
             <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content" >
@@ -823,11 +864,19 @@ body {
                        <div class="card-body" > 
                             <div class="comment-box">
                                 <h4>Candidate Rating</h4><br>
-                                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> 
-                                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
-                                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
-                                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                                 <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                                @for ($i = 1; $i <= $feed[('rating')]; $i++)
+                                    <div class="rating-edit" > 
+                                    <input type="radio" name="rating" value="{{ $i }}" id={{$i}}><label for="5">☆</label> 
+                                    </div>
+                                @endfor
+                                <div class="rating" > 
+                                @for ($i = 1; $i <= 5-$feed[('rating')]; $i++)
+                                   
+                                    <input type="radio" name="rating" value="{{ $i + $feed[('rating')]}}" id="{{ $i + $feed[('rating')]}}"/><label for="{{ $i + $feed[('rating')]}}">☆</label> 
+                                   
+                                @endfor
+                                </div>
+                                
                                  <br><br>
                                  <h4>Candidate Status</h4>
                                 <div class="radio">
@@ -858,13 +907,14 @@ body {
                    
                                <div class="modal-footer">
                                         
-                            <button type="button" class="btn btn-danger" >update</button>
+                               <button type="submit" class="btn btn-green" >Update</button>
                             </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 @endforeach
     @endif  
       <form method="POST" action="{{url('feedback')}}"> 
@@ -879,7 +929,13 @@ body {
             <div class="card-body" > 
                 <div class="comment-box">
                     <h4>Candidate Rating</h4><br>
-                       <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                       <div class="rating"> 
+                           <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                             <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
+                             <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> 
+                            </div>
                     <br><br>
                        <h4>Candidate Status</h4>
                     <div class="radio">
