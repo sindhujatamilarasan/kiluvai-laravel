@@ -77,16 +77,12 @@
   
   <div class="card-body">
   <h4 class="card-title">Job Description</h4>
-                         <p> The role is responsible for designing, coding and modifying websites, from layout to function and according to a client’s specifications. Strive to create visually appealing sites that feature user-friendly design and clear navigation.</p>
+  
+                         <p> {{$jobdata[0]->short_desc}}</p>
                         <div id="collapse" style="display:none">
-                            <h4 class="title">Web Developer Job Duties:</h4>
-                                <p>Regular exposure to business stakeholders and executive management, as well as the authority and scope to apply your expertise to many interesting technical problems.
-                                    Candidate must have a strong understanding of UI, cross-browser compatibility, general web functions and standards.
-                                    The position requires constant communication with colleagues.
-                                    Experience in planning and delivering software platforms used across multiple products and organizational units.
-                                    Strong grasping knowledge in coding.</p>
-                            <h4 class="title">Web Developer Skills and Qualifications:</h4>
-                                <p>JavaScript, JQuery, HTML, HTML5, CSS, CSS3, Web Programming Skills, E-Commerce, Teamwork, Verbal Communication, cross-browser compatibility, Web User Interface Design (UI), Security Principles, Object-Oriented Design, Web Services (REST/SOAP), Multimedia Content Development, API’s</p>
+                            
+                                <p>{{strip_tags($jobdata[0]->job_desc)}}</p>
+                            
                         </div>
                 <a href="#collapse" class="nav-toggle">Read More</a>
    

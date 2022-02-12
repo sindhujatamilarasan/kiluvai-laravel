@@ -81,10 +81,9 @@
   <h4 class="card-title">Job Description</h4>
                          <p>{{$jobdata[0]->short_desc}}</p>
                         <div id="collapse" style="display:none">
-                            <h4 class="title">Web Developer Job Duties:</h4>
+                          
                                 <p>{{strip_tags($jobdata[0]->job_desc)}}</p>
-                            <h4 class="title">Web Developer Skills and Qualifications:</h4>
-                                <p>JavaScript, JQuery, HTML, HTML5, CSS, CSS3, Web Programming Skills, E-Commerce, Teamwork, Verbal Communication, cross-browser compatibility, Web User Interface Design (UI), Security Principles, Object-Oriented Design, Web Services (REST/SOAP), Multimedia Content Development, API’s</p>
+                         
                         </div>
                 <a href="#collapse" class="nav-toggle">Read More</a>
    

@@ -89,8 +89,10 @@ class InterviewController extends Controller
                 //for experienced view form
                 public function exp($id)
                 {
+
+                    $jobdata=Job::where('id', $id)->get(['id','job_desc','short_desc','skills']);
                     $date=Carbon::now()->format('Y-m-d');
-                    return view ('exp',compact(['id','date']));
+                    return view ('exp',compact(['id','date']))->with('jobdata',$jobdata);
                 }
 
 
@@ -148,8 +150,8 @@ class InterviewController extends Controller
                     'file' => 'required|mimes:pdf|max:2500',
                     'email' => 'required|email|unique:users|max:40|regex:/(.+)@(.+)\.(.+)/i',
                     'date_from' => 'required',
-                    'currentctc' => 'required|numeric',
-                    'expectedctc' => 'required|numeric',
+                    'currentctc' => 'required|numeric|max:6',
+                    'expectedctc' => 'required|numeric|max:6',
                     'noticeperiod' => 'required|numeric'
                     ]);
                     if ($validatedData->fails())
